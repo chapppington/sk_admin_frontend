@@ -4,7 +4,7 @@ import { PUBLIC_PAGES } from "@/config/pages/public.config";
 import { protectDashboardPages } from "@/middlewares/protect-dashboard.middleware";
 import { protectLoginPages } from "@/middlewares/protect-login.middleware";
 
-export async function middleware(request: NextRequest): Promise<NextResponse> {
+export async function proxy(request: NextRequest): Promise<NextResponse> {
   const pathname = request.nextUrl.pathname;
 
   if (pathname.startsWith(PUBLIC_PAGES.AUTH)) {
