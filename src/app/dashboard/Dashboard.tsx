@@ -1,8 +1,8 @@
 "use client"
 
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/navigation/app-sidebar"
 import { DataTable } from "@/components/data-table"
-import { SiteHeader } from "@/components/site-header"
+import { SiteHeader } from "@/components/navigation/site-header"
 import { SidebarInset, SidebarProvider } from "@/shared/ui/sidebar"
 
 import data from "./data.json"
