@@ -1,6 +1,6 @@
 class DashboardPages {
-  HOME = "/dashboard";
-  PROFILE = `${this.HOME}/profile`;
+  HOME = "/dashboard"
+  PROFILE = `${this.HOME}/profile`
 }
 
-export const DASHBOARD_PAGES = new DashboardPages();
+export const DASHBOARD_PAGES = new DashboardPages()

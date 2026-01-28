@@ -1,24 +1,24 @@
-import { axiosDefault } from "@/api/axios";
+import { axiosDefault } from "@/api/axios"
 import type {
   ILoginFormData,
   IRegisterFormData,
-} from "@/shared/types/auth.types";
-import type { IUser } from "@/shared/types/user.types";
-import authTokenService from "./auth-token.service";
+} from "@/shared/types/auth.types"
+import type { IUser } from "@/shared/types/user.types"
+import authTokenService from "./auth-token.service"
 
 interface ApiResponse<T> {
-  data: T;
-  meta?: Record<string, unknown>;
-  errors?: unknown[];
+  data: T
+  meta?: Record<string, unknown>
+  errors?: unknown[]
 }
 
 interface TokenResponse {
-  access_token: string;
-  refresh_token: string;
+  access_token: string
+  refresh_token: string
 }
 
 interface RefreshTokenResponse {
-  access_token: string;
+  access_token: string
 }
 
 class AuthService {
@@ -26,45 +26,45 @@ class AuthService {
     const response = await axiosDefault.post<ApiResponse<TokenResponse>>(
       "/auth/login",
       data,
-    );
+    )
 
-    const tokens = response.data.data;
+    const tokens = response.data.data
 
     if (tokens.access_token && tokens.refresh_token) {
-      authTokenService.saveAccessToken(tokens.access_token);
-      authTokenService.saveRefreshToken(tokens.refresh_token);
+      authTokenService.saveAccessToken(tokens.access_token)
+      authTokenService.saveRefreshToken(tokens.refresh_token)
     }
 
-    return tokens;
+    return tokens
   }
 
   async register(data: IRegisterFormData) {
     const response = await axiosDefault.post<ApiResponse<IUser>>(
       "/auth/register",
       data,
-    );
+    )
 
-    return response.data.data;
+    return response.data.data
   }
 
   async refreshToken() {
     const response = await axiosDefault.post<ApiResponse<RefreshTokenResponse>>(
       "/auth/token/refresh",
-    );
+    )
 
-    const tokenData = response.data.data;
+    const tokenData = response.data.data
 
     if (tokenData.access_token) {
-      authTokenService.saveAccessToken(tokenData.access_token);
+      authTokenService.saveAccessToken(tokenData.access_token)
     }
 
-    return tokenData;
+    return tokenData
   }
 
   async logout() {
-    authTokenService.removeAccessToken();
-    authTokenService.removeRefreshToken();
+    authTokenService.removeAccessToken()
+    authTokenService.removeRefreshToken()
   }
 }
 
-export default new AuthService();
+export default new AuthService()

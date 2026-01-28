@@ -1,28 +1,28 @@
-import { axiosAuth } from "@/api/axios";
-import type { IUser } from "@/shared/types/user.types";
+import { axiosAuth } from "@/api/axios"
+import type { IUser } from "@/shared/types/user.types"
 
 interface ApiResponse<T> {
-  data: T;
-  meta?: Record<string, unknown>;
-  errors?: unknown[];
+  data: T
+  meta?: Record<string, unknown>
+  errors?: unknown[]
 }
 
 class UserService {
-  private _BASE_URL = "/users";
+  private _BASE_URL = "/users"
 
   async fetchProfile() {
     const response = await axiosAuth.get<ApiResponse<IUser>>(
       `${this._BASE_URL}/me`,
-    );
-    return { data: response.data.data };
+    )
+    return { data: response.data.data }
   }
 
   async getUserById(userId: string) {
     const response = await axiosAuth.get<ApiResponse<IUser>>(
       `${this._BASE_URL}/${userId}`,
-    );
-    return { data: response.data.data };
+    )
+    return { data: response.data.data }
   }
 }
 
-export default new UserService();
+export default new UserService()

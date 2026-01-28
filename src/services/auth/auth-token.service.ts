@@ -1,15 +1,15 @@
-import Cookies from "js-cookie";
-import { AuthToken } from "@/shared/types/auth.types";
+import Cookies from "js-cookie"
+import { AuthToken } from "@/shared/types/auth.types"
 
 class AuthTokenService {
   getAccessToken() {
-    const accessToken = Cookies.get(AuthToken.ACCESS_TOKEN);
-    return accessToken || null;
+    const accessToken = Cookies.get(AuthToken.ACCESS_TOKEN)
+    return accessToken || null
   }
 
   getRefreshToken() {
-    const refreshToken = Cookies.get(AuthToken.REFRESH_TOKEN);
-    return refreshToken || null;
+    const refreshToken = Cookies.get(AuthToken.REFRESH_TOKEN)
+    return refreshToken || null
   }
 
   saveAccessToken(accessToken: string) {
@@ -17,7 +17,7 @@ class AuthTokenService {
       sameSite: "lax",
       expires: 1,
       path: "/",
-    });
+    })
   }
 
   saveRefreshToken(refreshToken: string) {
@@ -25,18 +25,18 @@ class AuthTokenService {
       sameSite: "lax",
       expires: 7,
       path: "/",
-    });
+    })
   }
 
   removeAccessToken() {
-    Cookies.remove(AuthToken.ACCESS_TOKEN, { path: "/" });
-    Cookies.remove(AuthToken.ACCESS_TOKEN);
+    Cookies.remove(AuthToken.ACCESS_TOKEN, { path: "/" })
+    Cookies.remove(AuthToken.ACCESS_TOKEN)
   }
 
   removeRefreshToken() {
-    Cookies.remove(AuthToken.REFRESH_TOKEN, { path: "/" });
-    Cookies.remove(AuthToken.REFRESH_TOKEN);
+    Cookies.remove(AuthToken.REFRESH_TOKEN, { path: "/" })
+    Cookies.remove(AuthToken.REFRESH_TOKEN)
   }
 }
 
-export default new AuthTokenService();
+export default new AuthTokenService()
