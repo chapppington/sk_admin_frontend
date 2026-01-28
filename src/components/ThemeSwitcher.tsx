@@ -1,8 +1,8 @@
 "use client"
 
+import { Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/shared/ui/button"
-import { Sun } from "lucide-react"
 
 export function ThemeSwitcher() {
   const { setTheme, resolvedTheme } = useTheme()
