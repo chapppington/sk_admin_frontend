@@ -98,6 +98,9 @@ dependencies:
   react-dom:
     specifier: 19.2.3
     version: 19.2.3(react@19.2.3)
+  react-hook-form:
+    specifier: ^7.71.1
+    version: 7.71.1(react@19.2.3)
   recharts:
     specifier: 2.15.4
     version: 2.15.4(react-dom@19.2.3)(react@19.2.3)
@@ -2414,6 +2417,15 @@ packages:
     dependencies:
       react: 19.2.3
       scheduler: 0.27.0
+    dev: false
+
+  /react-hook-form@7.71.1(react@19.2.3):
+    resolution: {integrity: sha512-9SUJKCGKo8HUSsCO+y0CtqkqI5nNuaDqTxyqPsZPqIwudpj4rCrAz/jZV+jn57bx5gtZKOh3neQu94DXMc+w5w==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+    dependencies:
+      react: 19.2.3
     dev: false
 
   /react-is@16.13.1:

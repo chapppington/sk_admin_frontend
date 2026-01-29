@@ -1,16 +1,7 @@
 import { axiosDefault } from "@/api/axios"
-import type {
-  ILoginFormData,
-  IRegisterFormData,
-} from "@/shared/types/auth.types"
-import type { IUser } from "@/shared/types/user.types"
+import type { ApiResponse } from "@/shared/types/api.types"
+import type { ILoginFormData } from "@/shared/types/auth.types"
 import authTokenService from "./auth-token.service"
-
-interface ApiResponse<T> {
-  data: T
-  meta?: Record<string, unknown>
-  errors?: unknown[]
-}
 
 interface TokenResponse {
   access_token: string
@@ -36,15 +27,6 @@ class AuthService {
     }
 
     return tokens
-  }
-
-  async register(data: IRegisterFormData) {
-    const response = await axiosDefault.post<ApiResponse<IUser>>(
-      "/auth/register",
-      data,
-    )
-
-    return response.data.data
   }
 
   async refreshToken() {

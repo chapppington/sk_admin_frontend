@@ -1,13 +1,13 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { DASHBOARD_PAGES } from "@/config/pages/dashboard.config"
-import { PUBLIC_PAGES } from "@/config/pages/public.config"
+import { LOGIN_PAGES } from "@/config/pages/login.config"
 import { protectDashboardPages } from "@/middlewares/protect-dashboard.middleware"
 import { protectLoginPages } from "@/middlewares/protect-login.middleware"
 
 export async function proxy(request: NextRequest): Promise<NextResponse> {
   const pathname = request.nextUrl.pathname
 
-  if (pathname.startsWith(PUBLIC_PAGES.AUTH)) {
+  if (pathname.startsWith(LOGIN_PAGES.LOGIN)) {
     return protectLoginPages(request)
   }
 
@@ -19,5 +19,5 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
 }
 
 export const config = {
-  matcher: ["/auth/:path*"],
+  matcher: ["/dashboard/:path*", "/login"],
 }
