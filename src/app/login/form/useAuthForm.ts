@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import { useTransition } from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { toast } from "sonner"
-import { DASHBOARD_PAGES } from "@/config/pages/dashboard.config"
+import { DASHBOARD_HOME } from "@/config/pages/dashboard.config"
 import authService from "@/services/auth/auth.service"
 import type { ILoginFormData } from "@/shared/types/auth.types"
 
@@ -23,7 +23,7 @@ export function useAuthForm() {
       startTransition(() => {
         loginForm.reset()
         toast.success("Успешный вход!")
-        router.push(DASHBOARD_PAGES.HOME)
+        router.push(DASHBOARD_HOME)
       })
     },
     onError(error) {

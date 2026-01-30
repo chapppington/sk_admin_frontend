@@ -1,27 +1,21 @@
 "use client"
 
 import {
-  IconCamera,
-  IconChartBar,
-  IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileDescription,
-  IconFileWord,
-  IconFolder,
-  IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
-  IconReport,
-  IconSearch,
-  IconSettings,
+  IconBriefcase,
+  IconCertificate,
+  IconClipboardList,
+  IconNews,
+  IconPackage,
+  IconPhoto,
   IconUsers,
 } from "@tabler/icons-react"
+import Link from "next/link"
 import type * as React from "react"
-
 import { NavMain } from "@/components/navigation/nav-main"
 import { NavUser } from "@/components/navigation/nav-user"
 import { ThemeLogo } from "@/components/ThemeLogo"
+import { DASHBOARD_HOME } from "@/config/pages/dashboard.config"
+import { useProfile } from "@/hooks/useProfile"
 import {
   Sidebar,
   SidebarContent,
@@ -30,139 +24,60 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from "@/shared/ui/sidebar"
+import { Skeleton } from "@/shared/ui/skeleton"
 
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+const navMainItems = [
+  { title: "Новости", url: `${DASHBOARD_HOME}/news`, icon: IconNews },
+  { title: "Продукция", url: `${DASHBOARD_HOME}/products`, icon: IconPackage },
+  {
+    title: "Вакансии",
+    url: `${DASHBOARD_HOME}/vacancies`,
+    icon: IconUsers,
   },
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "#",
-      icon: IconDashboard,
-    },
-    {
-      title: "Lifecycle",
-      url: "#",
-      icon: IconListDetails,
-    },
-    {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
-    },
-    {
-      title: "Projects",
-      url: "#",
-      icon: IconFolder,
-    },
-    {
-      title: "Team",
-      url: "#",
-      icon: IconUsers,
-    },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: IconFileAi,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: IconSettings,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
-    },
-  ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
-    },
-  ],
-}
+  {
+    title: "Портфолио",
+    url: `${DASHBOARD_HOME}/portfolio`,
+    icon: IconBriefcase,
+  },
+  {
+    title: "Сертификаты",
+    url: `${DASHBOARD_HOME}/certificates`,
+    icon: IconCertificate,
+  },
+  {
+    title: "Заявки",
+    url: `${DASHBOARD_HOME}/applications`,
+    icon: IconClipboardList,
+  },
+]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user, isLoading } = useProfile()
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem className="p-3">
-            <ThemeLogo />
+            <Link href={DASHBOARD_HOME}>
+              <ThemeLogo />
+            </Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={navMainItems} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {isLoading ? (
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <Skeleton className="h-10 w-full rounded-md" />
+            </SidebarMenuItem>
+          </SidebarMenu>
+        ) : user ? (
+          <NavUser user={{ name: user.name, email: user.email }} />
+        ) : null}
       </SidebarFooter>
     </Sidebar>
   )
