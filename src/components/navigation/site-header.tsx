@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation"
 
-import { ThemeSwitcher } from "@/components/ThemeSwitcher"
+import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher"
 import { DASHBOARD_PAGE_TITLES } from "@/config/pages/dashboard.config"
 import { Separator } from "@/shared/ui/separator"
 import { SidebarTrigger } from "@/shared/ui/sidebar"

@@ -6,14 +6,13 @@ import {
   IconClipboardList,
   IconNews,
   IconPackage,
-  IconPhoto,
   IconUsers,
 } from "@tabler/icons-react"
 import Link from "next/link"
 import type * as React from "react"
 import { NavMain } from "@/components/navigation/nav-main"
 import { NavUser } from "@/components/navigation/nav-user"
-import { ThemeLogo } from "@/components/ThemeLogo"
+import { ThemeLogo } from "@/components/ui/ThemeLogo"
 import { DASHBOARD_HOME } from "@/config/pages/dashboard.config"
 import { useProfile } from "@/hooks/useProfile"
 import {

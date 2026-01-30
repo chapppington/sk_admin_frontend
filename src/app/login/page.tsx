@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { LoginForm } from "@/app/login/form/LoginForm"
-import { ThemeLogo } from "@/components/ThemeLogo"
+import { ThemeLogo } from "@/components/ui/ThemeLogo"
 
 export default function LoginPage() {
   return (
