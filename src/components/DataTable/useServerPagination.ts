@@ -8,21 +8,16 @@ export interface ServerPaginationConfig {
   pageSizeOptions?: number[]
 }
 
-export function useServerPagination(config: ServerPaginationConfig | undefined) {
-  const pageSizeOptions =
-    config?.pageSizeOptions ?? DEFAULT_PAGE_SIZE_OPTIONS
+export function useServerPagination(
+  config: ServerPaginationConfig | undefined,
+) {
+  const pageSizeOptions = config?.pageSizeOptions ?? DEFAULT_PAGE_SIZE_OPTIONS
   const pageCount =
-    config && config.limit > 0
-      ? Math.ceil(config.total / config.limit) || 1
-      : 1
+    config && config.limit > 0 ? Math.ceil(config.total / config.limit) || 1 : 1
   const pageIndex =
-    config && config.limit > 0
-      ? Math.floor(config.offset / config.limit)
-      : 0
+    config && config.limit > 0 ? Math.floor(config.offset / config.limit) : 0
   const canPrev = pageIndex > 0
-  const canNext = config
-    ? config.offset + config.limit < config.total
-    : false
+  const canNext = config ? config.offset + config.limit < config.total : false
 
   const goToFirstPage = () => {
     config?.onPageChange(0, config.limit)
