@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
 import { IconPhoto } from "@tabler/icons-react"
 import Image from "next/image"
 import type { ComponentProps } from "react"
+import { useState } from "react"
 
 function isValidImageUrl(url: string): boolean {
   try {
@@ -38,8 +38,7 @@ export function ImageWithFallback({
 }: ImageWithFallbackProps) {
   const [failed, setFailed] = useState(false)
 
-  const showFallback =
-    !src || !isValidImageUrl(src) || failed
+  const showFallback = !src || !isValidImageUrl(src) || failed
 
   if (showFallback) {
     return (

@@ -1,17 +1,17 @@
 "use client"
 
 import {
-  type ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from "@tanstack/react-table"
-import {
   IconChevronLeft,
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
 } from "@tabler/icons-react"
+import {
+  type ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
 
 import { Button } from "@/shared/ui/button"
 import { Label } from "@/shared/ui/label"
@@ -90,8 +90,7 @@ export function DataTable<TData, TValue>({
     )
   }
   const handleLastPage = () => {
-    const lastOffset =
-      (pageCount - 1) * serverPagination!.limit
+    const lastOffset = (pageCount - 1) * serverPagination!.limit
     serverPagination?.onPageChange(lastOffset, serverPagination!.limit)
   }
   const handlePageSizeChange = (value: string) => {
@@ -138,7 +137,10 @@ export function DataTable<TData, TValue>({
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   Нет данных.
                 </TableCell>
               </TableRow>
@@ -159,9 +161,7 @@ export function DataTable<TData, TValue>({
                 onValueChange={handlePageSizeChange}
               >
                 <SelectTrigger size="sm" className="w-20" id="rows-per-page">
-                  <SelectValue
-                    placeholder={serverPagination.limit}
-                  />
+                  <SelectValue placeholder={serverPagination.limit} />
                 </SelectTrigger>
                 <SelectContent side="top">
                   {pageSizeOptions.map((size) => (

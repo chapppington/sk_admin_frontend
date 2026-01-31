@@ -32,3 +32,7 @@ export interface INewsListParams {
   sort_field?: string
   sort_order?: number
 }
+
+export type INewsCreate = Omit<INews, "oid" | "created_at" | "updated_at">
+
+export type INewsUpdate = Partial<INewsCreate>

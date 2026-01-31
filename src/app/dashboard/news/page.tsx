@@ -1,21 +1,38 @@
 "use client"
 
 import { useState } from "react"
-
-import { DataTable } from "@/components/data-table"
+import { DataTable } from "@/components/tables/DataTable"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import { useNews } from "@/hooks/useNews"
-import { newsColumns } from "./columns"
+import type { INews } from "@/shared/types/news.types"
+import { Button } from "@/shared/ui/button"
+import { getNewsColumns } from "./columns"
+import { NewsDialog } from "./NewsDialog"
 
 export default function NewsPage() {
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
-  const { news, pagination, isLoading } = useNews({
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [selectedNews, setSelectedNews] = useState<INews | null>(null)
+
+  const { news, pagination, isLoading, deleteMutation } = useNews({
     limit,
     offset,
     sort_field: "created_at",
     sort_order: -1,
   })
+
+  const handleCreate = () => {
+    setSelectedNews(null)
+    setDialogOpen(true)
+  }
+
+  const handleEdit = (item: INews) => {
+    setSelectedNews(item)
+    setDialogOpen(true)
+  }
+
+  const handleDelete = (item: INews) => deleteMutation.mutate(item.oid)
 
   if (isLoading) {
     return (
@@ -32,8 +49,11 @@ export default function NewsPage() {
 
   return (
     <div className="flex flex-col gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-6">
+      <div className="flex justify-end">
+        <Button onClick={handleCreate}>Создать</Button>
+      </div>
       <DataTable
-        columns={newsColumns}
+        columns={getNewsColumns(handleEdit, handleDelete)}
         data={news}
         serverPagination={
           pagination
@@ -45,6 +65,11 @@ export default function NewsPage() {
               }
             : undefined
         }
+      />
+      <NewsDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        news={selectedNews}
       />
     </div>
   )

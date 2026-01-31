@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
         hostname: "s3.regru.cloud",
       },
     ],
-  }
+  },
 }
 
 export default nextConfig
