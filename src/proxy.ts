@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { DASHBOARD_HOME } from "@/config/pages/dashboard.config"
-import { LOGIN_PAGES } from "@/config/pages/login.config"
+import { DASHBOARD_HOME } from "@/config/dashboard.pages"
+import { LOGIN_PAGES } from "@/config/login.pages"
 import { protectDashboardPages } from "@/middlewares/protect-dashboard.middleware"
 import { protectLoginPages } from "@/middlewares/protect-login.middleware"
 

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import { useTransition } from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { toast } from "sonner"
-import { DASHBOARD_HOME } from "@/config/pages/dashboard.config"
+import { DASHBOARD_HOME } from "@/config/dashboard.pages"
 import authService from "@/services/auth/auth.service"
 import type { ILoginFormData } from "@/shared/types/auth.types"
 

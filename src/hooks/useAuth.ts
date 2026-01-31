@@ -1,16 +1,25 @@
 "use client"
 
-import { useQueryClient } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import { useTransition } from "react"
 import { toast } from "sonner"
-import { LOGIN_PAGES } from "@/config/pages/login.config"
+import { LOGIN_PAGES } from "@/config/login.pages"
 import authService from "@/services/auth/auth.service"
+import userService from "@/services/user.service"
 
-export function useLogout() {
+export function useAuth() {
   const router = useRouter()
   const queryClient = useQueryClient()
   const [isPending, startTransition] = useTransition()
+
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["profile"],
+    queryFn: () => userService.fetchProfile(),
+    refetchInterval: 1800000,
+  })
+
+  const user = data?.data ?? null
 
   const logout = () => {
     authService.logout()
@@ -21,5 +30,11 @@ export function useLogout() {
     })
   }
 
-  return { logout, isPending }
+  return {
+    user,
+    isLoading,
+    refetch,
+    logout,
+    isPending,
+  }
 }

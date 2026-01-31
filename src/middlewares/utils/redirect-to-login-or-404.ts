@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server"
-import { LOGIN_PAGES } from "@/config/pages/login.config"
+import { LOGIN_PAGES } from "@/config/login.pages"
 import { nextRedirect } from "./next-redirect"
 
 export const redirectToLoginOrNotFound = (request: NextRequest) => {

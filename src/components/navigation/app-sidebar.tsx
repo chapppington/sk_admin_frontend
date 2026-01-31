@@ -13,8 +13,8 @@ import type * as React from "react"
 import { NavMain } from "@/components/navigation/nav-main"
 import { NavUser } from "@/components/navigation/nav-user"
 import { ThemeLogo } from "@/components/ui/ThemeLogo"
-import { DASHBOARD_HOME } from "@/config/pages/dashboard.config"
-import { useProfile } from "@/hooks/useProfile"
+import { DASHBOARD_HOME } from "@/config/dashboard.pages"
+import { useAuth } from "@/hooks/useAuth"
 import {
   Sidebar,
   SidebarContent,
@@ -51,7 +51,7 @@ const navMainItems = [
 ]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { user, isLoading } = useProfile()
+  const { user, isLoading } = useAuth()
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>

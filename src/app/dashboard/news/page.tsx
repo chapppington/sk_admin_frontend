@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { DataTable } from "@/components/tables/DataTable"
+import { DataTable } from "@/components/DataTable"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import { useNews } from "@/hooks/useNews"
 import type { INews } from "@/shared/types/news.types"

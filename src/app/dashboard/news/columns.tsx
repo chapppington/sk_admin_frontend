@@ -2,7 +2,7 @@
 
 import type { ColumnDef } from "@tanstack/react-table"
 
-import { ActionsCell } from "@/components/tables/ActionsCell"
+import { ActionsCell } from "@/components/DataTable/ActionsCell"
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback"
 import type { INews } from "@/shared/types/news.types"
 import { formatCreationDate } from "@/shared/utils"

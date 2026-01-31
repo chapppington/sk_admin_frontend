@@ -2,7 +2,7 @@
 
 import { IconDotsVertical, IconLogout } from "@tabler/icons-react"
 
-import { useLogout } from "@/hooks/useLogout"
+import { useAuth } from "@/hooks/useAuth"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,7 +27,7 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
-  const { logout, isPending } = useLogout()
+  const { logout, isPending } = useAuth()
 
   return (
     <SidebarMenu>
