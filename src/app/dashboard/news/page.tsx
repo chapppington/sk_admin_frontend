@@ -7,7 +7,7 @@ import { useNews } from "@/hooks/useNews"
 import type { INews } from "@/shared/types/news.types"
 import { Button } from "@/shared/ui/button"
 import { getNewsColumns } from "./columns"
-import { NewsDialog } from "./NewsDialog"
+import { NewsDialog } from "./dialog/NewsDialog"
 
 export default function NewsPage() {
   const [offset, setOffset] = useState(0)

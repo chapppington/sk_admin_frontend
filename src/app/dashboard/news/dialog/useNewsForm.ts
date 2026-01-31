@@ -3,18 +3,12 @@
 import { useEffect } from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { useNews } from "@/hooks/useNews"
-import type { INews, INewsCreate } from "@/shared/types/news.types"
+import type {
+  INews,
+  INewsCreate,
+  INewsCreatePayload,
+} from "@/shared/types/news.types"
 import { getReadingTimeMinutes, slugify } from "@/shared/utils"
-
-export type NewsFormValues = {
-  category: string
-  title: string
-  content: string
-  short_content: string
-  image_url: string
-  alt: string
-  date: string
-}
 
 export const VALID_NEWS_CATEGORIES = [
   "Производство",
@@ -24,13 +18,13 @@ export const VALID_NEWS_CATEGORIES = [
   "Наши проекты",
 ] as const
 
-const defaultValues: NewsFormValues = {
+const defaultValues: INewsCreate = {
   category: "",
   title: "",
   content: "",
   short_content: "",
-  image_url: "",
-  alt: "",
+  image_url: null,
+  alt: null,
   date: new Date().toISOString().slice(0, 10),
 }
 
@@ -40,15 +34,11 @@ export type UseNewsFormParams = {
   onOpenChange: (open: boolean) => void
 }
 
-export function useNewsForm({
-  open,
-  news,
-  onOpenChange,
-}: UseNewsFormParams) {
+export function useNewsForm({ open, news, onOpenChange }: UseNewsFormParams) {
   const { createMutation, updateMutation } = useNews()
   const isEdit = Boolean(news?.oid)
 
-  const form = useForm<NewsFormValues>({ defaultValues })
+  const form = useForm<INewsCreate>({ defaultValues })
 
   // Reset form
   useEffect(() => {
@@ -59,8 +49,8 @@ export function useNewsForm({
           title: news.title,
           content: news.content,
           short_content: news.short_content,
-          image_url: news.image_url ?? "",
-          alt: news.alt ?? "",
+          image_url: news.image_url ?? null,
+          alt: news.alt ?? null,
           date: news.date.slice(0, 10),
         })
       } else {
@@ -69,8 +59,8 @@ export function useNewsForm({
     }
   }, [open, news, form])
 
-  const onSubmit: SubmitHandler<NewsFormValues> = async (data) => {
-    const payload: INewsCreate = {
+  const onSubmit: SubmitHandler<INewsCreate> = async (data) => {
+    const payload: INewsCreatePayload = {
       ...data,
       slug: slugify(data.title),
       reading_time: getReadingTimeMinutes(data.content),

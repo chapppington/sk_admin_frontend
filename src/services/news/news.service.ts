@@ -1,10 +1,12 @@
 import { axiosAuth } from "@/api/axios"
-import type { ApiResponse } from "@/shared/types/api.types"
+import type {
+  ApiResponse,
+  ListPaginatedResponse,
+} from "@/shared/types/api.types"
 import type {
   INews,
-  INewsCreate,
+  INewsCreatePayload,
   INewsListParams,
-  INewsListResponse,
   INewsUpdate,
 } from "@/shared/types/news.types"
 
@@ -12,14 +14,13 @@ class NewsService {
   private _BASE_URL = "/news"
 
   async fetchNews(params?: INewsListParams) {
-    const response = await axiosAuth.get<ApiResponse<INewsListResponse>>(
-      this._BASE_URL,
-      { params },
-    )
+    const response = await axiosAuth.get<
+      ApiResponse<ListPaginatedResponse<INews>>
+    >(this._BASE_URL, { params })
     return { data: response.data.data }
   }
 
-  async createNews(payload: INewsCreate) {
+  async createNews(payload: INewsCreatePayload) {
     const response = await axiosAuth.post<ApiResponse<INews>>(
       this._BASE_URL,
       payload,

@@ -1,7 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import newsService from "@/services/news/news.service"
-import type { INewsCreate, INewsListParams } from "@/shared/types/news.types"
+import type {
+  INewsCreatePayload,
+  INewsListParams,
+  INewsUpdate,
+} from "@/shared/types/news.types"
 import { getErrorMessage } from "@/shared/utils"
 
 export function useNews(params?: INewsListParams) {
@@ -15,7 +19,8 @@ export function useNews(params?: INewsListParams) {
 
   const createMutation = useMutation({
     mutationKey: ["news", "create"],
-    mutationFn: (payload: INewsCreate) => newsService.createNews(payload),
+    mutationFn: (payload: INewsCreatePayload) =>
+      newsService.createNews(payload),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ["news"] })
       toast.success("Новость создана")
@@ -27,7 +32,7 @@ export function useNews(params?: INewsListParams) {
 
   const updateMutation = useMutation({
     mutationKey: ["news", "update"],
-    mutationFn: ({ oid, data }: { oid: string; data: INewsCreate }) =>
+    mutationFn: ({ oid, data }: { oid: string; data: INewsUpdate }) =>
       newsService.updateNews(oid, data),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ["news"] })

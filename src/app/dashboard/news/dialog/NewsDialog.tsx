@@ -1,7 +1,10 @@
 "use client"
 
 import { Controller } from "react-hook-form"
-import { useNewsForm, VALID_NEWS_CATEGORIES } from "@/app/dashboard/news/useNewsForm"
+import {
+  useNewsForm,
+  VALID_NEWS_CATEGORIES,
+} from "@/app/dashboard/news/dialog/useNewsForm"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import type { INews } from "@/shared/types/news.types"
 import { Button } from "@/shared/ui/button"
@@ -22,8 +25,6 @@ import {
   SelectValue,
 } from "@/shared/ui/select"
 import { Textarea } from "@/shared/ui/textarea"
-
-export type { NewsFormValues } from "@/app/dashboard/news/useNewsForm"
 
 type NewsDialogProps = {
   open: boolean

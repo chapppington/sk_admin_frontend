@@ -13,17 +13,6 @@ export interface INews {
   updated_at: string
 }
 
-export interface INewsPagination {
-  limit: number
-  offset: number
-  total: number
-}
-
-export interface INewsListResponse {
-  items: INews[]
-  pagination: INewsPagination
-}
-
 export interface INewsListParams {
   limit?: number
   offset?: number
@@ -33,6 +22,14 @@ export interface INewsListParams {
   sort_order?: number
 }
 
-export type INewsCreate = Omit<INews, "oid" | "created_at" | "updated_at">
+export type INewsCreate = Omit<
+  INews,
+  "oid" | "created_at" | "updated_at" | "slug" | "reading_time"
+>
 
-export type INewsUpdate = Partial<INewsCreate>
+export type INewsCreatePayload = INewsCreate & {
+  slug: string
+  reading_time: number
+}
+
+export type INewsUpdate = Partial<INewsCreatePayload>
