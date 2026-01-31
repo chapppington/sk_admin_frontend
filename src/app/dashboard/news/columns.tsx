@@ -5,7 +5,7 @@ import type { ColumnDef } from "@tanstack/react-table"
 import { ActionsCell } from "@/components/DataTable/ActionsCell"
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback"
 import type { INews } from "@/shared/types/news.types"
-import { formatCreationDate } from "@/shared/utils"
+import { formatDate } from "@/shared/utils/date"
 
 const PREVIEW_WIDTH = 96
 const PREVIEW_HEIGHT = Math.round((PREVIEW_WIDTH * 9) / 16)
@@ -59,9 +59,9 @@ export function getNewsColumns(
       cell: ({ row }) => `${row.getValue("reading_time")} мин`,
     },
     {
-      accessorKey: "created_at",
+      accessorKey: "date",
       header: "Дата создания",
-      cell: ({ row }) => formatCreationDate(row.original.created_at),
+      cell: ({ row }) => formatDate(row.original.date),
     },
     {
       id: "actions",

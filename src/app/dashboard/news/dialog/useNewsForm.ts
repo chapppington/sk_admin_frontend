@@ -8,7 +8,8 @@ import type {
   INewsCreate,
   INewsCreatePayload,
 } from "@/shared/types/news.types"
-import { getReadingTimeMinutes, slugify } from "@/shared/utils"
+import { getReadingTimeMinutes } from "@/shared/utils/reading-time"
+import { slugify } from "@/shared/utils/slugify"
 
 export const VALID_NEWS_CATEGORIES = [
   "Производство",

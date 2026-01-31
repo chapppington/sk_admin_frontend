@@ -6,7 +6,7 @@ import type {
   INewsListParams,
   INewsUpdate,
 } from "@/shared/types/news.types"
-import { getErrorMessage } from "@/shared/utils"
+import { getErrorMessage } from "@/shared/utils/error"
 
 export function useNews(params?: INewsListParams) {
   const queryClient = useQueryClient()
