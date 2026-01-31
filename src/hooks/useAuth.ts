@@ -6,7 +6,6 @@ import { useTransition } from "react"
 import { toast } from "sonner"
 import { LOGIN_PAGES } from "@/config/login.pages"
 import authService from "@/services/auth/auth.service"
-import userService from "@/services/user.service"
 
 export function useAuth() {
   const router = useRouter()
@@ -15,7 +14,7 @@ export function useAuth() {
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["profile"],
-    queryFn: () => userService.fetchProfile(),
+    queryFn: () => authService.fetchProfile(),
     refetchInterval: 1800000,
   })
 

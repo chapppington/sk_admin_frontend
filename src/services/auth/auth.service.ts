@@ -1,6 +1,7 @@
-import { axiosDefault } from "@/api/axios"
+import { axiosAuth, axiosDefault } from "@/api/axios"
 import type { ApiResponse } from "@/shared/types/api.types"
 import type { ILoginFormData } from "@/shared/types/auth.types"
+import type { IUser } from "@/shared/types/user.types"
 import authTokenService from "./auth-token.service"
 
 interface TokenResponse {
@@ -46,6 +47,11 @@ class AuthService {
   async logout() {
     authTokenService.removeAccessToken()
     authTokenService.removeRefreshToken()
+  }
+
+  async fetchProfile() {
+    const response = await axiosAuth.get<ApiResponse<IUser>>("/users/me")
+    return { data: response.data.data }
   }
 }
 
