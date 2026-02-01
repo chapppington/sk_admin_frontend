@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { useNews } from "@/hooks/useNews"
 import type {
@@ -19,7 +18,7 @@ export const VALID_NEWS_CATEGORIES = [
   "Наши проекты",
 ] as const
 
-function toFormValues(news: INews | null): INewsCreate {
+export function toFormValues(news: INews | null): INewsCreate {
   if (!news) {
     return {
       category: "",
@@ -43,22 +42,17 @@ function toFormValues(news: INews | null): INewsCreate {
 }
 
 export type UseNewsFormParams = {
-  open: boolean
   news: INews | null
   onOpenChange: (open: boolean) => void
 }
 
-export function useNewsForm({ open, news, onOpenChange }: UseNewsFormParams) {
+export function useNewsForm({ news, onOpenChange }: UseNewsFormParams) {
   const { createMutation, updateMutation } = useNews()
   const isEdit = Boolean(news?.oid)
   const form = useForm<INewsCreate>({
-    defaultValues: toFormValues(null),
+    defaultValues: toFormValues(news),
   })
 
-  useEffect(() => {
-    if (open) form.reset(toFormValues(news))
-  }, [open, news, form])
-  
   const onSuccess = () => {
     onOpenChange(false)
     form.reset()
