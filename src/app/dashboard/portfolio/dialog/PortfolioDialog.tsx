@@ -20,7 +20,7 @@ export function PortfolioDialog({ open, onOpenChange, portfolio }: PortfolioDial
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[600px]">
+      <DialogContent className="max-h-[90vh] overflow-y-auto overflow-x-hidden sm:max-w-[680px]">
         <DialogHeader>
           <DialogTitle>
             {isEdit ? "Редактировать проект" : "Создать проект"}
