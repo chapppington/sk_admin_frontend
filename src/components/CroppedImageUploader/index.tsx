@@ -84,7 +84,7 @@ export function CroppedImageUploader({
         ) : (
           <>
             <IconPhotoPlus className="text-muted-foreground size-10" />
-            <span className="text-muted-foreground text-sm">
+            <span className="text-muted-foreground text-sm text-center">
               Нажмите, чтобы загрузить изображение
             </span>
           </>
