@@ -67,7 +67,7 @@ export function getNewsColumns(
       id: "actions",
       header: "Действия",
       cell: ({ row }) => (
-        <ActionsCell item={row.original} onEdit={onEdit} onDelete={onDelete} />
+        <ActionsCell item={row.original} onEdit={onEdit} onDelete={onDelete} deleteConfirmMessage="Удалить новость?" />
       ),
     },
   ]

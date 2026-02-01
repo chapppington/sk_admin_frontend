@@ -1,3 +1,76 @@
+"use client"
+
+import { useState } from "react"
+import { DataTable } from "@/components/DataTable"
+import { MiniLoader } from "@/components/ui/MiniLoader"
+import { useVacancies } from "@/hooks/useVacancies"
+import type { IVacancy } from "@/types/vacancies.types"
+import { Button } from "@/shared/ui/button"
+import { getVacanciesColumns } from "./columns"
+import { VacancyDialog } from "./dialog/VacancyDialog"
+
 export default function VacanciesPage() {
-  return <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6" />
+  const [offset, setOffset] = useState(0)
+  const [limit, setLimit] = useState(10)
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [selectedVacancy, setSelectedVacancy] = useState<IVacancy | null>(null)
+
+  const { vacancies, pagination, isLoading, deleteMutation } = useVacancies({
+    limit,
+    offset,
+    sort_field: "created_at",
+    sort_order: -1,
+  })
+
+  const handleCreate = () => {
+    setSelectedVacancy(null)
+    setDialogOpen(true)
+  }
+
+  const handleEdit = (item: IVacancy) => {
+    setSelectedVacancy(item)
+    setDialogOpen(true)
+  }
+
+  const handleDelete = (item: IVacancy) => deleteMutation.mutate(item.oid)
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-6">
+        <MiniLoader />
+      </div>
+    )
+  }
+
+  const handlePageChange = (newOffset: number, newLimit: number) => {
+    setOffset(newOffset)
+    setLimit(newLimit)
+  }
+
+  return (
+    <div className="flex flex-col gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-6">
+      <div className="flex justify-end">
+        <Button onClick={handleCreate}>Создать</Button>
+      </div>
+      <DataTable
+        columns={getVacanciesColumns(handleEdit, handleDelete)}
+        data={vacancies}
+        serverPagination={
+          pagination
+            ? {
+                total: pagination.total,
+                offset,
+                limit,
+                onPageChange: handlePageChange,
+              }
+            : undefined
+        }
+      />
+      <VacancyDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        vacancy={selectedVacancy}
+      />
+    </div>
+  )
 }
