@@ -49,8 +49,8 @@ export default function VacanciesPage() {
 
   return (
     <div className="flex flex-col gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-6">
-      <div className="flex justify-end">
-        <Button onClick={handleCreate}>Создать</Button>
+      <div className="flex justify-start">
+        <Button onClick={handleCreate}>Добавить вакансию</Button>
       </div>
       <DataTable
         columns={getVacanciesColumns(handleEdit, handleDelete)}

@@ -1,6 +1,6 @@
 "use client"
 
-import { IconPencil, IconTrash } from "@tabler/icons-react"
+import { IconEye, IconPencil, IconTrash } from "@tabler/icons-react"
 import { useState } from "react"
 
 import { Button } from "@/shared/ui/button"
@@ -8,13 +8,15 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover"
 
 type ActionsCellProps<T> = {
   item: T
-  onEdit: (item: T) => void
+  onView?: (item: T) => void
+  onEdit?: (item: T) => void
   onDelete: (item: T) => void
   deleteConfirmMessage?: string
 }
 
 export function ActionsCell<T>({
   item,
+  onView,
   onEdit,
   onDelete,
   deleteConfirmMessage = "Вы точно хотите удалить?",
@@ -28,15 +30,28 @@ export function ActionsCell<T>({
 
   return (
     <div className="flex items-center gap-1">
-      <Button
-        variant="ghost"
-        size="icon-sm"
-        className="size-8"
-        onClick={() => onEdit(item)}
-        title="Редактировать"
-      >
-        <IconPencil className="size-4" />
-      </Button>
+      {onView && (
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          className="size-8"
+          onClick={() => onView(item)}
+          title="Подробнее"
+        >
+          <IconEye className="size-4" />
+        </Button>
+      )}
+      {onEdit && (
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          className="size-8"
+          onClick={() => onEdit(item)}
+          title="Редактировать"
+        >
+          <IconPencil className="size-4" />
+        </Button>
+      )}
       <Popover open={deleteOpen} onOpenChange={setDeleteOpen}>
         <PopoverTrigger asChild>
           <Button

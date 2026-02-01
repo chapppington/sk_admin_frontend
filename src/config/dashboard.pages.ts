@@ -8,5 +8,5 @@ export const DASHBOARD_PAGE_TITLES: Record<string, string> = {
   "/dashboard/vacancies": "Вакансии",
   "/dashboard/portfolio": "Портфолио",
   "/dashboard/certificates": "Сертификаты",
-  "/dashboard/applications": "Заявки",
+  "/dashboard/submissions": "Заявки",
 }

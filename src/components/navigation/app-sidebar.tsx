@@ -45,7 +45,7 @@ const navMainItems = [
   },
   {
     title: "Заявки",
-    url: `${DASHBOARD_HOME}/applications`,
+    url: `${DASHBOARD_HOME}/submissions`,
     icon: IconClipboardList,
   },
 ]
