@@ -8,6 +8,7 @@ import {
 import { CroppedImageUploader } from "@/components/CroppedImageUploader"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import type { INews } from "@/types/news.types"
+import { BUCKET_NAMES } from "@/config/buckets"
 import { Button } from "@/shared/ui/button"
 import { DialogFooter } from "@/shared/ui/dialog"
 import { Field, FieldGroup, FieldLabel } from "@/shared/ui/field"
@@ -96,7 +97,7 @@ export function NewsForm({ news, onOpenChange }: NewsFormProps) {
               render={({ field }) => (
                 <>
                   <CroppedImageUploader
-                    bucketName="news"
+                    bucketName={BUCKET_NAMES.news}
                     value={field.value}
                     onChange={(url) => field.onChange(url ?? null)}
                     aspect={16 / 9}

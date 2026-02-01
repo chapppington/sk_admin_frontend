@@ -1,0 +1,33 @@
+"use client"
+
+import type { IPortfolio } from "@/types/portfolios.types"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/shared/ui/dialog"
+import { PortfolioForm } from "@/app/dashboard/portfolio/form/PortfolioForm"
+
+type PortfolioDialogProps = {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  portfolio: IPortfolio | null
+}
+
+export function PortfolioDialog({ open, onOpenChange, portfolio }: PortfolioDialogProps) {
+  const isEdit = Boolean(portfolio?.oid)
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[600px]">
+        <DialogHeader>
+          <DialogTitle>
+            {isEdit ? "Редактировать проект" : "Создать проект"}
+          </DialogTitle>
+        </DialogHeader>
+        {open && <PortfolioForm portfolio={portfolio} onOpenChange={onOpenChange} />}
+      </DialogContent>
+    </Dialog>
+  )
+}
