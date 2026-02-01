@@ -21,8 +21,8 @@ export default function LoginPage() {
         <Image
           src="/bg.jpg"
           alt="Background"
-          width={1000}
-          height={1000}
+          fill
+          sizes="(max-width: 640px) 100vw, 600px"
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.7]"
         />
       </div>
