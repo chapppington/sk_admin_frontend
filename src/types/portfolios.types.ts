@@ -3,6 +3,7 @@ export interface IPortfolio {
   name: string
   slug: string
   poster: string
+  poster_alt: string
   year: number
   task_title: string
   task_description: string
@@ -11,7 +12,9 @@ export interface IPortfolio {
   solution_subtitle: string
   solution_subdescription: string
   solution_image_left: string
+  solution_image_left_alt: string
   solution_image_right: string
+  solution_image_right_alt: string
   description: string
   has_review: boolean
   review_title: string | null

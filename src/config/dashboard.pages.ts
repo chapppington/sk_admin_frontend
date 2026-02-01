@@ -9,4 +9,5 @@ export const DASHBOARD_PAGE_TITLES: Record<string, string> = {
   "/dashboard/portfolio": "Портфолио",
   "/dashboard/certificates": "Сертификаты",
   "/dashboard/submissions": "Заявки",
+  "/dashboard/seo": "Наборы мета тегов",
 }

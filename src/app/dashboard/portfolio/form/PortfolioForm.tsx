@@ -40,7 +40,7 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <Tabs defaultValue={STEPS[0].value} className="w-full min-w-0">
-        <TabsList className="grid w-full grid-cols-4 h-auto p-1 gap-1">
+        <TabsList className="mb-3 grid w-full grid-cols-4 h-auto p-1 gap-1">
           {STEPS.map((step) => (
             <TabsTrigger
               key={step.value}
@@ -87,6 +87,10 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
                   />
                 )}
               />
+            </Field>
+            <Field>
+              <FieldLabel>Alt постера</FieldLabel>
+              <Input {...register("poster_alt", { required: true })} placeholder="Описание изображения" />
             </Field>
           </FieldGroup>
         </TabsContent>
@@ -149,6 +153,10 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
               />
             </Field>
             <Field>
+              <FieldLabel>Alt изображения (слева)</FieldLabel>
+              <Input {...register("solution_image_left_alt", { required: true })} placeholder="Описание изображения" />
+            </Field>
+            <Field>
               <FieldLabel>Изображение решения (справа)</FieldLabel>
               <Controller
                 name="solution_image_right"
@@ -163,6 +171,10 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
                   />
                 )}
               />
+            </Field>
+            <Field>
+              <FieldLabel>Alt изображения (справа)</FieldLabel>
+              <Input {...register("solution_image_right_alt", { required: true })} placeholder="Описание изображения" />
             </Field>
           </FieldGroup>
         </TabsContent>

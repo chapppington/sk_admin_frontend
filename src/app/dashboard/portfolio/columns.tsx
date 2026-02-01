@@ -20,7 +20,7 @@ export function getPortfoliosColumns(
       cell: ({ row }) => (
         <ImageWithFallback
           src={row.original.poster}
-          alt={row.original.name}
+          alt={row.original.poster_alt}
           width={PREVIEW_WIDTH}
           height={PREVIEW_HEIGHT}
           containerClassName="relative aspect-video w-24 shrink-0 overflow-hidden rounded border"

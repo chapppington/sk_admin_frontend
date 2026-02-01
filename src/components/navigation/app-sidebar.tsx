@@ -6,6 +6,7 @@ import {
   IconClipboardList,
   IconNews,
   IconPackage,
+  IconSettings,
   IconUsers,
 } from "@tabler/icons-react"
 import Link from "next/link"
@@ -19,9 +20,15 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuButton,
   SidebarMenuItem,
+  SidebarSeparator,
+  useSidebar,
 } from "@/shared/ui/sidebar"
 import { Skeleton } from "@/shared/ui/skeleton"
 
@@ -52,6 +59,7 @@ const navMainItems = [
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { user, isLoading } = useAuth()
+  const { isMobile, setOpenMobile } = useSidebar()
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -66,6 +74,27 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={navMainItems} />
+        <div className="w-full min-w-0 shrink-0 px-2">
+          <SidebarSeparator className="mx-0 w-full" />
+        </div>
+        <SidebarGroup>
+          <SidebarGroupLabel>SEO настройки</SidebarGroupLabel>
+          <SidebarGroupContent className="flex flex-col gap-2">
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild tooltip="Наборы мета тегов">
+                  <Link
+                    href={`${DASHBOARD_HOME}/seo`}
+                    onClick={() => isMobile && setOpenMobile(false)}
+                  >
+                    <IconSettings />
+                    <span>Наборы мета тегов</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
         {isLoading ? (
