@@ -4,7 +4,7 @@ import type { ColumnDef } from "@tanstack/react-table"
 
 import { ActionsCell } from "@/components/DataTable/ActionsCell"
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback"
-import type { INews } from "@/shared/types/news.types"
+import type { INews } from "@/types/news.types"
 import { formatDate } from "@/shared/utils/date"
 
 const PREVIEW_WIDTH = 96

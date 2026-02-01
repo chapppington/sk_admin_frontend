@@ -2,7 +2,7 @@
 
 import * as jose from "jose"
 import { transformUserToState } from "@/middlewares/utils/transform-user-to-state"
-import type { ITokenInside } from "@/shared/types/auth.types"
+import type { ITokenInside } from "@/types/auth.types"
 
 export async function jwtVerifyServer(accessToken: string) {
   try {

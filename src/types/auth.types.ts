@@ -19,6 +19,12 @@ export interface ITokenInside {
 
 export type TProtectUserData = Omit<ITokenInside, "iat" | "exp">
 
+export interface IUser {
+  oid: string
+  name: string
+  email: string
+}
+
 export interface ILoginFormData {
   email: string
   password: string

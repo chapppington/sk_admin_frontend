@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server"
-import { AuthToken } from "@/shared/types/auth.types"
+import { AuthToken } from "@/types/auth.types"
 import { getNewTokensByRefresh } from "./get-new-tokens-by-refresh"
 import { jwtVerifyServer } from "./jwt-verify"
 

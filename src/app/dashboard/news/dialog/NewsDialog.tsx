@@ -7,7 +7,7 @@ import {
 } from "@/app/dashboard/news/dialog/useNewsForm"
 import { CroppedImageUploader } from "@/components/CroppedImageUploader"
 import { MiniLoader } from "@/components/ui/MiniLoader"
-import type { INews } from "@/shared/types/news.types"
+import type { INews } from "@/types/news.types"
 import { Button } from "@/shared/ui/button"
 import {
   Dialog,

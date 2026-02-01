@@ -2,13 +2,13 @@ import { axiosAuth } from "@/api/axios"
 import type {
   ApiResponse,
   ListPaginatedResponse,
-} from "@/shared/types/api.types"
+} from "@/types/api.types"
 import type {
   INews,
   INewsCreatePayload,
   INewsListParams,
   INewsUpdate,
-} from "@/shared/types/news.types"
+} from "@/types/news.types"
 
 class NewsService {
   private _BASE_URL = "/news"

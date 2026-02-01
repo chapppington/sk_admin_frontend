@@ -1,7 +1,7 @@
 import { axiosAuth, axiosDefault } from "@/api/axios"
-import type { ApiResponse } from "@/shared/types/api.types"
-import type { ILoginFormData } from "@/shared/types/auth.types"
-import type { IUser } from "@/shared/types/user.types"
+import type { ApiResponse } from "@/types/api.types"
+import type { ILoginFormData } from "@/types/auth.types"
+import type { IUser } from "@/types/auth.types"
 import authTokenService from "./auth-token.service"
 
 interface TokenResponse {

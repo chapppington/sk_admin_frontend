@@ -5,7 +5,7 @@ import type {
   INewsCreatePayload,
   INewsListParams,
   INewsUpdate,
-} from "@/shared/types/news.types"
+} from "@/types/news.types"
 import { getErrorMessage } from "@/shared/utils/error"
 
 export function useNews(params?: INewsListParams) {

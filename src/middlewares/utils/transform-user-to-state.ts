@@ -1,4 +1,4 @@
-import type { TProtectUserData } from "@/shared/types/auth.types"
+import type { TProtectUserData } from "@/types/auth.types"
 
 export type TUserDataState = {
   sub: string

@@ -1,5 +1,5 @@
 import Cookies from "js-cookie"
-import { AuthToken } from "@/shared/types/auth.types"
+import { AuthToken } from "@/types/auth.types"
 
 class AuthTokenService {
   getAccessToken() {

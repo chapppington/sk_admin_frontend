@@ -1,11 +1,6 @@
 import { axiosAuth } from "@/api/axios"
-import type { ApiResponse } from "@/shared/types/api.types"
-
-export interface UploadFileResult {
-  file_path: string
-  bucket_name: string
-  file_url: string | null
-}
+import type { ApiResponse } from "@/types/api.types"
+import type { UploadFileResult } from "@/types/media.types"
 
 class MediaService {
   private _BASE_URL = "/media"

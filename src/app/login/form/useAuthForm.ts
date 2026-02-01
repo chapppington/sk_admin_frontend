@@ -8,7 +8,7 @@ import { type SubmitHandler, useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { DASHBOARD_HOME } from "@/config/dashboard.pages"
 import authService from "@/services/auth/auth.service"
-import type { ILoginFormData } from "@/shared/types/auth.types"
+import type { ILoginFormData } from "@/types/auth.types"
 
 export function useAuthForm() {
   const router = useRouter()

@@ -7,7 +7,7 @@ import type {
   INews,
   INewsCreate,
   INewsCreatePayload,
-} from "@/shared/types/news.types"
+} from "@/types/news.types"
 import { getReadingTimeMinutes } from "@/shared/utils/reading-time"
 import { slugify } from "@/shared/utils/slugify"
 
