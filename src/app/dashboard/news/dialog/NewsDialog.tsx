@@ -5,6 +5,7 @@ import {
   useNewsForm,
   VALID_NEWS_CATEGORIES,
 } from "@/app/dashboard/news/dialog/useNewsForm"
+import { CroppedImageUploader } from "@/components/CroppedImageUploader"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import type { INews } from "@/shared/types/news.types"
 import { Button } from "@/shared/ui/button"
@@ -33,11 +34,16 @@ type NewsDialogProps = {
 }
 
 export function NewsDialog({ open, onOpenChange, news }: NewsDialogProps) {
-  const { form, isEdit, isPending, onSubmit } = useNewsForm({
-    open,
-    news,
-    onOpenChange,
-  })
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    setValue,
+    isEdit,
+    isLoading,
+  } = useNewsForm({ open, news, onOpenChange })
+  const imageUrl = watch("image_url")
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -47,16 +53,13 @@ export function NewsDialog({ open, onOpenChange, news }: NewsDialogProps) {
             {isEdit ? "Редактировать новость" : "Создать новость"}
           </DialogTitle>
         </DialogHeader>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-4"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <FieldGroup>
             <Field>
               <FieldLabel>Категория</FieldLabel>
               <Controller
                 name="category"
-                control={form.control}
+                control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
                   <Select
@@ -81,14 +84,14 @@ export function NewsDialog({ open, onOpenChange, news }: NewsDialogProps) {
             <Field>
               <FieldLabel>Заголовок</FieldLabel>
               <Input
-                {...form.register("title", { required: true })}
+                {...register("title", { required: true })}
                 placeholder="Заголовок"
               />
             </Field>
             <Field>
               <FieldLabel>Краткое содержание</FieldLabel>
               <Textarea
-                {...form.register("short_content", { required: true })}
+                {...register("short_content", { required: true })}
                 placeholder="Краткое содержание"
                 rows={2}
               />
@@ -96,27 +99,39 @@ export function NewsDialog({ open, onOpenChange, news }: NewsDialogProps) {
             <Field>
               <FieldLabel>Содержание</FieldLabel>
               <Textarea
-                {...form.register("content", { required: true })}
+                {...register("content", { required: true })}
                 placeholder="Полный текст"
                 rows={4}
               />
             </Field>
             <Field>
-              <FieldLabel>URL изображения</FieldLabel>
-              <Input
-                {...form.register("image_url")}
-                placeholder="https://..."
-                type="url"
+              <FieldLabel>Изображение</FieldLabel>
+              <CroppedImageUploader
+                bucketName="news"
+                value={imageUrl}
+                onChange={(url) => setValue("image_url", url ?? null)}
+                aspect={16 / 9}
               />
+              {imageUrl && (
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="mt-2 text-destructive hover:text-destructive"
+                  onClick={() => setValue("image_url", null)}
+                >
+                  Удалить изображение
+                </Button>
+              )}
             </Field>
             <Field>
               <FieldLabel>Alt изображения</FieldLabel>
-              <Input {...form.register("alt")} placeholder="Alt текст" />
+              <Input {...register("alt")} placeholder="Alt текст" />
             </Field>
             <Field>
               <FieldLabel>Дата</FieldLabel>
               <Input
-                {...form.register("date", { required: true })}
+                {...register("date", { required: true })}
                 type="date"
               />
             </Field>
@@ -129,8 +144,8 @@ export function NewsDialog({ open, onOpenChange, news }: NewsDialogProps) {
             >
               Отмена
             </Button>
-            <Button type="submit" disabled={isPending}>
-              {isPending ? <MiniLoader /> : isEdit ? "Сохранить" : "Создать"}
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? <MiniLoader /> : isEdit ? "Сохранить" : "Создать"}
             </Button>
           </DialogFooter>
         </form>

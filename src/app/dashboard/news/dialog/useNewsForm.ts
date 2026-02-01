@@ -19,14 +19,27 @@ export const VALID_NEWS_CATEGORIES = [
   "Наши проекты",
 ] as const
 
-const defaultValues: INewsCreate = {
-  category: "",
-  title: "",
-  content: "",
-  short_content: "",
-  image_url: null,
-  alt: null,
-  date: new Date().toISOString().slice(0, 10),
+function toFormValues(news: INews | null): INewsCreate {
+  if (!news) {
+    return {
+      category: "",
+      title: "",
+      content: "",
+      short_content: "",
+      image_url: null,
+      alt: null,
+      date: new Date().toISOString().slice(0, 10),
+    }
+  }
+  return {
+    category: news.category,
+    title: news.title,
+    content: news.content,
+    short_content: news.short_content,
+    image_url: news.image_url ?? null,
+    alt: news.alt ?? null,
+    date: news.date.slice(0, 10),
+  }
 }
 
 export type UseNewsFormParams = {
@@ -38,53 +51,41 @@ export type UseNewsFormParams = {
 export function useNewsForm({ open, news, onOpenChange }: UseNewsFormParams) {
   const { createMutation, updateMutation } = useNews()
   const isEdit = Boolean(news?.oid)
+  const form = useForm<INewsCreate>({
+    defaultValues: toFormValues(null),
+  })
 
-  const form = useForm<INewsCreate>({ defaultValues })
-
-  // Reset form
   useEffect(() => {
-    if (open) {
-      if (news) {
-        form.reset({
-          category: news.category,
-          title: news.title,
-          content: news.content,
-          short_content: news.short_content,
-          image_url: news.image_url ?? null,
-          alt: news.alt ?? null,
-          date: news.date.slice(0, 10),
-        })
-      } else {
-        form.reset(defaultValues)
-      }
-    }
+    if (open) form.reset(toFormValues(news))
   }, [open, news, form])
+  
+  const onSuccess = () => {
+    onOpenChange(false)
+    form.reset()
+  }
 
-  const onSubmit: SubmitHandler<INewsCreate> = async (data) => {
+  const onSubmit: SubmitHandler<INewsCreate> = (data) => {
     const payload: INewsCreatePayload = {
       ...data,
       slug: slugify(data.title),
       reading_time: getReadingTimeMinutes(data.content),
     }
-    try {
-      if (isEdit && news) {
-        await updateMutation.mutateAsync({ oid: news.oid, data: payload })
-      } else {
-        await createMutation.mutateAsync(payload)
-      }
-      onOpenChange(false)
-      form.reset(defaultValues)
-    } catch {
-      // Error toast handled in useNews mutations
+    if (isEdit && news) {
+      updateMutation.mutate({ oid: news.oid, data: payload }, { onSuccess })
+    } else {
+      createMutation.mutate(payload, { onSuccess })
     }
   }
 
-  const isPending = createMutation.isPending || updateMutation.isPending
+  const isLoading = createMutation.isPending || updateMutation.isPending
 
   return {
-    form,
+    register: form.register,
+    handleSubmit: form.handleSubmit(onSubmit),
+    control: form.control,
+    watch: form.watch,
+    setValue: form.setValue,
     isEdit,
-    isPending,
-    onSubmit,
+    isLoading,
   }
 }
