@@ -53,13 +53,17 @@ const navMainItems = [
     url: `${DASHBOARD_HOME}/portfolio`,
     icon: IconBriefcase,
   },
-  
+
   {
     title: "Сертификаты",
     url: `${DASHBOARD_HOME}/certificates`,
     icon: IconCertificate,
   },
-  { title: "Отзывы", url: `${DASHBOARD_HOME}/reviews`, icon: IconMessageCircle2 },
+  {
+    title: "Отзывы",
+    url: `${DASHBOARD_HOME}/reviews`,
+    icon: IconMessageCircle2,
+  },
   { title: "Команда", url: `${DASHBOARD_HOME}/team`, icon: IconUsersGroup },
 ]
 

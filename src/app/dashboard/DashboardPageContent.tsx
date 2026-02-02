@@ -36,7 +36,11 @@ const navItems = [
     icon: IconCertificate,
   },
   { title: "Команда", href: `${DASHBOARD_HOME}/team`, icon: IconUsersGroup },
-  { title: "Отзывы", href: `${DASHBOARD_HOME}/reviews`, icon: IconMessageCircle2 },
+  {
+    title: "Отзывы",
+    href: `${DASHBOARD_HOME}/reviews`,
+    icon: IconMessageCircle2,
+  },
   {
     title: "Наборы мета тегов",
     href: `${DASHBOARD_HOME}/seo`,
