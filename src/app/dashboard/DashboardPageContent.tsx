@@ -8,6 +8,7 @@ import {
   IconPackage,
   IconSettings,
   IconUsers,
+  IconUsersGroup,
 } from "@tabler/icons-react"
 import Link from "next/link"
 import { DASHBOARD_HOME } from "@/config/dashboard.pages"
@@ -22,6 +23,7 @@ const navItems = [
     icon: IconClipboardList,
   },
   { title: "Продукция", href: `${DASHBOARD_HOME}/products`, icon: IconPackage },
+  { title: "Команда", href: `${DASHBOARD_HOME}/team`, icon: IconUsersGroup },
   { title: "Вакансии", href: `${DASHBOARD_HOME}/vacancies`, icon: IconUsers },
   {
     title: "Портфолио",

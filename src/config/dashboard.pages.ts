@@ -5,6 +5,7 @@ export const DASHBOARD_PAGE_TITLES: Record<string, string> = {
   "/dashboard/profile": "Профиль",
   "/dashboard/news": "Новости",
   "/dashboard/products": "Продукция",
+  "/dashboard/team": "Команда",
   "/dashboard/vacancies": "Вакансии",
   "/dashboard/portfolio": "Портфолио",
   "/dashboard/certificates": "Сертификаты",

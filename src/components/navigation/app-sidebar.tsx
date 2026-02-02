@@ -8,6 +8,7 @@ import {
   IconPackage,
   IconSettings,
   IconUsers,
+  IconUsersGroup,
 } from "@tabler/icons-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -36,6 +37,7 @@ import { Skeleton } from "@/shared/ui/skeleton"
 const navMainItems = [
   { title: "Новости", url: `${DASHBOARD_HOME}/news`, icon: IconNews },
   { title: "Продукция", url: `${DASHBOARD_HOME}/products`, icon: IconPackage },
+  { title: "Команда", url: `${DASHBOARD_HOME}/team`, icon: IconUsersGroup },
   {
     title: "Вакансии",
     url: `${DASHBOARD_HOME}/vacancies`,
