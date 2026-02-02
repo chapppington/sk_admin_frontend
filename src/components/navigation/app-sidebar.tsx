@@ -10,6 +10,7 @@ import {
   IconUsers,
 } from "@tabler/icons-react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import type * as React from "react"
 import { NavMain } from "@/components/navigation/nav-main"
 import { NavUser } from "@/components/navigation/nav-user"
@@ -58,8 +59,10 @@ const navMainItems = [
 ]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const pathname = usePathname()
   const { user, isLoading } = useAuth()
   const { isMobile, setOpenMobile } = useSidebar()
+  const seoUrl = `${DASHBOARD_HOME}/seo`
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -82,9 +85,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarGroupContent className="flex flex-col gap-2">
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Наборы мета тегов">
+                <SidebarMenuButton
+                  asChild
+                  tooltip="Наборы мета тегов"
+                  isActive={pathname === seoUrl}
+                >
                   <Link
-                    href={`${DASHBOARD_HOME}/seo`}
+                    href={seoUrl}
                     onClick={() => isMobile && setOpenMobile(false)}
                   >
                     <IconSettings />
