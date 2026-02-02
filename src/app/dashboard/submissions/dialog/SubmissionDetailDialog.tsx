@@ -56,7 +56,7 @@ export function SubmissionDetailDialog({
               submission.files.length > 0 ? (
                 <ul className="list-inside list-disc space-y-1">
                   {submission.files.map((url, i) => (
-                    <li key={i}>
+                    <li key={url}>
                       <a
                         href={url}
                         target="_blank"

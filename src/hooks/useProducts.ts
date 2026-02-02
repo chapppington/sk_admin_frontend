@@ -80,7 +80,7 @@ export function useProducts(params?: IProductsListParams) {
 export function useProduct(oid: string | null) {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["products", oid],
-    queryFn: () => productsService.fetchProductById(oid!),
+    queryFn: () => productsService.fetchProductById(oid ?? ""),
     enabled: Boolean(oid),
   })
 

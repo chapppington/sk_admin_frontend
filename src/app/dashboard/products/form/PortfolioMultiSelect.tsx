@@ -100,9 +100,11 @@ export function PortfolioMultiSelect({
               {filteredPortfolios.map((portfolio) => (
                 <label
                   key={portfolio.oid}
+                  htmlFor={`portfolio-${portfolio.oid}`}
                   className="flex items-center gap-2 rounded-md px-2 py-1.5 cursor-pointer hover:bg-accent"
                 >
                   <Checkbox
+                    id={`portfolio-${portfolio.oid}`}
                     checked={value.includes(portfolio.oid)}
                     onCheckedChange={() => toggle(portfolio.oid)}
                   />
