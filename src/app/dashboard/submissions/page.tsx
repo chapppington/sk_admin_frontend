@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { DataTable } from "@/components/DataTable"
 import { MiniLoader } from "@/components/ui/MiniLoader"
-import { useSubmissions } from "@/hooks/useSubmissions"
+import { useSubmissions } from "@/hooks/submissions/useSubmissions"
 import type { ISubmission } from "@/types/submissions.types"
 import { getSubmissionsColumns } from "./columns"
 import { SubmissionDetailDialog } from "./dialog/SubmissionDetailDialog"

@@ -2,7 +2,7 @@
 
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { toFormValues } from "@/app/dashboard/portfolio/form/utils"
-import { usePortfolios } from "@/hooks/usePortfolios"
+import { usePortfolios } from "@/hooks/portfolios/usePortfolios"
 import { slugify } from "@/shared/utils/slugify"
 import type { IPortfolio, IPortfolioCreate } from "@/types/portfolios.types"
 

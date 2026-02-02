@@ -2,7 +2,7 @@
 
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { toFormValues } from "@/app/dashboard/seo/form/utils"
-import { useSeoSettings } from "@/hooks/useSeoSettings"
+import { useSeoSettings } from "@/hooks/seo-settings/useSeoSettings"
 import type {
   ISeoSettings,
   ISeoSettingsCreate,

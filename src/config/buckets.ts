@@ -3,6 +3,7 @@ export const BUCKET_NAMES = {
   portfolios: "portfolios",
   products: "products",
   seo: "seo",
+  certificates: "certificates",
 } as const
 
 export type BucketName = (typeof BUCKET_NAMES)[keyof typeof BUCKET_NAMES]

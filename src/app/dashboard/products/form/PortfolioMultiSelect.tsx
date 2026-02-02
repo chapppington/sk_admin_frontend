@@ -2,8 +2,8 @@
 
 import { IconChevronDown } from "@tabler/icons-react"
 import { useMemo, useState } from "react"
-import { useDebounce } from "@/hooks/useDebounce"
-import { usePortfolios } from "@/hooks/usePortfolios"
+import { usePortfolios } from "@/hooks/portfolios/usePortfolios"
+import { useDebounce } from "@/shared/hooks/use-debounce"
 import { Button } from "@/shared/ui/button"
 import { Checkbox } from "@/shared/ui/checkbox"
 import { Input } from "@/shared/ui/input"

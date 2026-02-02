@@ -1,7 +1,7 @@
 "use client"
 
 import { type SubmitHandler, useForm } from "react-hook-form"
-import { useVacancies } from "@/hooks/useVacancies"
+import { useVacancies } from "@/hooks/vacancies/useVacancies"
 import type { IVacancy, IVacancyCreatePayload } from "@/types/vacancies.types"
 
 export type VacancyFormValues = {

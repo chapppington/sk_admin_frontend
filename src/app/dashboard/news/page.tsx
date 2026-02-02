@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { DataTable } from "@/components/DataTable"
 import { MiniLoader } from "@/components/ui/MiniLoader"
-import { useNews } from "@/hooks/useNews"
+import { useNews } from "@/hooks/news/useNews"
 import { Button } from "@/shared/ui/button"
 import type { INews } from "@/types/news.types"
 import { getNewsColumns } from "./columns"

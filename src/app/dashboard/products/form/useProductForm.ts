@@ -2,7 +2,7 @@
 
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { toFormValues } from "@/app/dashboard/products/form/utils"
-import { useProducts } from "@/hooks/useProducts"
+import { useProducts } from "@/hooks/products/useProducts"
 import { slugify } from "@/shared/utils/slugify"
 import type { IProduct, IProductCreate } from "@/types/products.types"
 

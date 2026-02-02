@@ -1,6 +1,11 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import { LoginForm } from "@/app/login/form/LoginForm"
 import { ThemeLogo } from "@/components/ui/ThemeLogo"
+
+export const metadata: Metadata = {
+  title: "Вход",
+}
 
 export default function LoginPage() {
   return (

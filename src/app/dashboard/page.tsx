@@ -1,3 +1,10 @@
+import type { Metadata } from "next"
+import { DashboardPageContent } from "./DashboardPageContent"
+
+export const metadata: Metadata = {
+  title: "Главная",
+}
+
 export default function DashboardPage() {
-  return <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6" />
+  return <DashboardPageContent />
 }

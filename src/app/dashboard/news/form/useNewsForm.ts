@@ -2,7 +2,7 @@
 
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { toFormValues } from "@/app/dashboard/news/form/utils"
-import { useNews } from "@/hooks/useNews"
+import { useNews } from "@/hooks/news/useNews"
 import { getReadingTimeMinutes } from "@/shared/utils/reading-time"
 import { slugify } from "@/shared/utils/slugify"
 import type { INews, INewsCreate, INewsCreatePayload } from "@/types/news.types"

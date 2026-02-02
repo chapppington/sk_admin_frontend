@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { DataTable } from "@/components/DataTable"
 import { MiniLoader } from "@/components/ui/MiniLoader"
-import { useSeoSettings } from "@/hooks/useSeoSettings"
+import { useSeoSettings } from "@/hooks/seo-settings/useSeoSettings"
 import { Button } from "@/shared/ui/button"
 import type { ISeoSettings } from "@/types/seo-settings.types"
 import { getSeoSettingsColumns } from "./columns"

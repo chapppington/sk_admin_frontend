@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { DataTable } from "@/components/DataTable"
 import { MiniLoader } from "@/components/ui/MiniLoader"
-import { useVacancies } from "@/hooks/useVacancies"
+import { useVacancies } from "@/hooks/vacancies/useVacancies"
 import { Button } from "@/shared/ui/button"
 import type { IVacancy } from "@/types/vacancies.types"
 import { getVacanciesColumns } from "./columns"

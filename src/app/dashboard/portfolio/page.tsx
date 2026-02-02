@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { DataTable } from "@/components/DataTable"
 import { MiniLoader } from "@/components/ui/MiniLoader"
-import { usePortfolios } from "@/hooks/usePortfolios"
+import { usePortfolios } from "@/hooks/portfolios/usePortfolios"
 import { Button } from "@/shared/ui/button"
 import type { IPortfolio } from "@/types/portfolios.types"
 import { getPortfoliosColumns } from "./columns"

@@ -16,7 +16,7 @@ import { NavMain } from "@/components/navigation/nav-main"
 import { NavUser } from "@/components/navigation/nav-user"
 import { ThemeLogo } from "@/components/ui/ThemeLogo"
 import { DASHBOARD_HOME } from "@/config/dashboard.pages"
-import { useAuth } from "@/hooks/useAuth"
+import { useAuth } from "@/hooks/auth/useAuth"
 import {
   Sidebar,
   SidebarContent,
@@ -69,7 +69,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem className="p-3">
-            <Link href={DASHBOARD_HOME}>
+            <Link
+              href={DASHBOARD_HOME}
+              onClick={() => isMobile && setOpenMobile(false)}
+            >
               <ThemeLogo />
             </Link>
           </SidebarMenuItem>
