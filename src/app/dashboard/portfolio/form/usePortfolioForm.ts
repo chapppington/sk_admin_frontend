@@ -1,17 +1,20 @@
 "use client"
 
 import { type SubmitHandler, useForm } from "react-hook-form"
-import { usePortfolios } from "@/hooks/usePortfolios"
-import type { IPortfolio, IPortfolioCreate } from "@/types/portfolios.types"
-import { slugify } from "@/shared/utils/slugify"
 import { toFormValues } from "@/app/dashboard/portfolio/form/utils"
+import { usePortfolios } from "@/hooks/usePortfolios"
+import { slugify } from "@/shared/utils/slugify"
+import type { IPortfolio, IPortfolioCreate } from "@/types/portfolios.types"
 
 export type UsePortfolioFormParams = {
   portfolio: IPortfolio | null
   onOpenChange: (open: boolean) => void
 }
 
-export function usePortfolioForm({ portfolio, onOpenChange }: UsePortfolioFormParams) {
+export function usePortfolioForm({
+  portfolio,
+  onOpenChange,
+}: UsePortfolioFormParams) {
   const { createMutation, updateMutation } = usePortfolios()
   const isEdit = Boolean(portfolio?.oid)
   const form = useForm<IPortfolioCreate>({
@@ -29,7 +32,10 @@ export function usePortfolioForm({ portfolio, onOpenChange }: UsePortfolioFormPa
       slug: slugify(data.name),
     }
     if (isEdit && portfolio) {
-      updateMutation.mutate({ oid: portfolio.oid, data: payload }, { onSuccess })
+      updateMutation.mutate(
+        { oid: portfolio.oid, data: payload },
+        { onSuccess },
+      )
     } else {
       createMutation.mutate(payload, { onSuccess })
     }

@@ -3,8 +3,6 @@
 import { IconPlus, IconTrash } from "@tabler/icons-react"
 import { Controller, useFieldArray } from "react-hook-form"
 import { useVacancyForm } from "@/app/dashboard/vacancies/form/useVacancyForm"
-import { VACANCY_CATEGORIES } from "@/types/vacancies.types"
-import type { IVacancy } from "@/types/vacancies.types"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import { Button } from "@/shared/ui/button"
 import { DialogFooter } from "@/shared/ui/dialog"
@@ -17,6 +15,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui/select"
+import type { IVacancy } from "@/types/vacancies.types"
+import { VACANCY_CATEGORIES } from "@/types/vacancies.types"
 
 type VacancyFormProps = {
   vacancy: IVacancy | null
@@ -24,13 +24,9 @@ type VacancyFormProps = {
 }
 
 export function VacancyForm({ vacancy, onOpenChange }: VacancyFormProps) {
-  const {
-    register,
-    handleSubmit,
-    control,
-    isEdit,
-    isLoading,
-  } = useVacancyForm({ vacancy, onOpenChange })
+  const { register, handleSubmit, control, isEdit, isLoading } = useVacancyForm(
+    { vacancy, onOpenChange },
+  )
 
   const requirementsFields = useFieldArray({ control, name: "requirements" })
   const experienceFields = useFieldArray({ control, name: "experience" })

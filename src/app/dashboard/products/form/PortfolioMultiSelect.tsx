@@ -1,17 +1,13 @@
 "use client"
 
-import { useMemo, useState } from "react"
 import { IconChevronDown } from "@tabler/icons-react"
+import { useMemo, useState } from "react"
 import { useDebounce } from "@/hooks/useDebounce"
 import { usePortfolios } from "@/hooks/usePortfolios"
+import { Button } from "@/shared/ui/button"
 import { Checkbox } from "@/shared/ui/checkbox"
 import { Input } from "@/shared/ui/input"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/shared/ui/popover"
-import { Button } from "@/shared/ui/button"
+import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover"
 import { cn } from "@/shared/utils"
 
 const PORTFOLIOS_FETCH_LIMIT = 500
@@ -77,7 +73,10 @@ export function PortfolioMultiSelect({
           <IconChevronDown className="ml-2 size-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-(--radix-popover-trigger-width) p-0" align="start">
+      <PopoverContent
+        className="w-(--radix-popover-trigger-width) p-0"
+        align="start"
+      >
         <div className="p-2 border-b">
           <Input
             placeholder="Поиск по названию..."

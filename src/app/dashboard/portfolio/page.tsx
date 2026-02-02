@@ -4,8 +4,8 @@ import { useState } from "react"
 import { DataTable } from "@/components/DataTable"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import { usePortfolios } from "@/hooks/usePortfolios"
-import type { IPortfolio } from "@/types/portfolios.types"
 import { Button } from "@/shared/ui/button"
+import type { IPortfolio } from "@/types/portfolios.types"
 import { getPortfoliosColumns } from "./columns"
 import { PortfolioDialog } from "./dialog/PortfolioDialog"
 
@@ -13,7 +13,9 @@ export default function PortfolioPage() {
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [selectedPortfolio, setSelectedPortfolio] = useState<IPortfolio | null>(null)
+  const [selectedPortfolio, setSelectedPortfolio] = useState<IPortfolio | null>(
+    null,
+  )
 
   const { portfolios, pagination, isLoading, deleteMutation } = usePortfolios({
     limit,

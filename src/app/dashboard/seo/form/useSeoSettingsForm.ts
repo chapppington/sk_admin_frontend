@@ -1,19 +1,22 @@
 "use client"
 
 import { type SubmitHandler, useForm } from "react-hook-form"
+import { toFormValues } from "@/app/dashboard/seo/form/utils"
 import { useSeoSettings } from "@/hooks/useSeoSettings"
 import type {
   ISeoSettings,
   ISeoSettingsCreate,
 } from "@/types/seo-settings.types"
-import { toFormValues } from "@/app/dashboard/seo/form/utils"
 
 export type UseSeoSettingsFormParams = {
   seoSettings: ISeoSettings | null
   onOpenChange: (open: boolean) => void
 }
 
-export function useSeoSettingsForm({ seoSettings, onOpenChange }: UseSeoSettingsFormParams) {
+export function useSeoSettingsForm({
+  seoSettings,
+  onOpenChange,
+}: UseSeoSettingsFormParams) {
   const { createMutation, updateMutation } = useSeoSettings()
   const isEdit = Boolean(seoSettings?.oid)
   const form = useForm<ISeoSettingsCreate>({

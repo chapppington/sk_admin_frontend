@@ -1,6 +1,5 @@
 "use client"
 
-import type { ISubmission } from "@/types/submissions.types"
 import {
   Dialog,
   DialogContent,
@@ -8,6 +7,7 @@ import {
   DialogTitle,
 } from "@/shared/ui/dialog"
 import { formatDateTime } from "@/shared/utils/date"
+import type { ISubmission } from "@/types/submissions.types"
 
 type SubmissionDetailDialogProps = {
   open: boolean
@@ -15,7 +15,13 @@ type SubmissionDetailDialogProps = {
   submission: ISubmission | null
 }
 
-function DetailRow({ label, value }: { label: string; value: React.ReactNode }) {
+function DetailRow({
+  label,
+  value,
+}: {
+  label: string
+  value: React.ReactNode
+}) {
   return (
     <div className="grid gap-1 text-sm">
       <span className="text-muted-foreground font-medium">{label}</span>
@@ -84,8 +90,14 @@ export function SubmissionDetailDialog({
               )
             }
           />
-          <DetailRow label="Дата создания" value={formatDateTime(submission.created_at)} />
-          <DetailRow label="Дата обновления" value={formatDateTime(submission.updated_at)} />
+          <DetailRow
+            label="Дата создания"
+            value={formatDateTime(submission.created_at)}
+          />
+          <DetailRow
+            label="Дата обновления"
+            value={formatDateTime(submission.updated_at)}
+          />
         </div>
       </DialogContent>
     </Dialog>

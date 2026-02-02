@@ -51,7 +51,7 @@ export function getProductsColumns(
         </Badge>
       ),
     },
-    
+
     {
       id: "actions",
       header: "Действия",

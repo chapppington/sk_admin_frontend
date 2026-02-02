@@ -3,8 +3,8 @@
 import type { ColumnDef } from "@tanstack/react-table"
 
 import { ActionsCell } from "@/components/DataTable/ActionsCell"
-import type { IVacancy } from "@/types/vacancies.types"
 import { formatDate } from "@/shared/utils/date"
+import type { IVacancy } from "@/types/vacancies.types"
 
 export function getVacanciesColumns(
   onEdit: (vacancy: IVacancy) => void,

@@ -1,13 +1,13 @@
 "use client"
 
-import type { IPortfolio } from "@/types/portfolios.types"
+import { PortfolioForm } from "@/app/dashboard/portfolio/form/PortfolioForm"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/shared/ui/dialog"
-import { PortfolioForm } from "@/app/dashboard/portfolio/form/PortfolioForm"
+import type { IPortfolio } from "@/types/portfolios.types"
 
 type PortfolioDialogProps = {
   open: boolean
@@ -15,7 +15,11 @@ type PortfolioDialogProps = {
   portfolio: IPortfolio | null
 }
 
-export function PortfolioDialog({ open, onOpenChange, portfolio }: PortfolioDialogProps) {
+export function PortfolioDialog({
+  open,
+  onOpenChange,
+  portfolio,
+}: PortfolioDialogProps) {
   const isEdit = Boolean(portfolio?.oid)
 
   return (
@@ -26,7 +30,9 @@ export function PortfolioDialog({ open, onOpenChange, portfolio }: PortfolioDial
             {isEdit ? "Редактировать проект" : "Создать проект"}
           </DialogTitle>
         </DialogHeader>
-        {open && <PortfolioForm portfolio={portfolio} onOpenChange={onOpenChange} />}
+        {open && (
+          <PortfolioForm portfolio={portfolio} onOpenChange={onOpenChange} />
+        )}
       </DialogContent>
     </Dialog>
   )

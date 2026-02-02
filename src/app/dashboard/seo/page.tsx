@@ -4,8 +4,8 @@ import { useState } from "react"
 import { DataTable } from "@/components/DataTable"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import { useSeoSettings } from "@/hooks/useSeoSettings"
-import type { ISeoSettings } from "@/types/seo-settings.types"
 import { Button } from "@/shared/ui/button"
+import type { ISeoSettings } from "@/types/seo-settings.types"
 import { getSeoSettingsColumns } from "./columns"
 import { SeoSettingsDialog } from "./dialog/SeoSettingsDialog"
 
@@ -13,14 +13,17 @@ export default function SeoPage() {
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [selectedSeoSettings, setSelectedSeoSettings] = useState<ISeoSettings | null>(null)
+  const [selectedSeoSettings, setSelectedSeoSettings] =
+    useState<ISeoSettings | null>(null)
 
-  const { seoSettings, pagination, isLoading, deleteMutation } = useSeoSettings({
-    limit,
-    offset,
-    sort_field: "created_at",
-    sort_order: -1,
-  })
+  const { seoSettings, pagination, isLoading, deleteMutation } = useSeoSettings(
+    {
+      limit,
+      offset,
+      sort_field: "created_at",
+      sort_order: -1,
+    },
+  )
 
   const handleCreate = () => {
     setSelectedSeoSettings(null)

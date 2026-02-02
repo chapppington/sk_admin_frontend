@@ -104,10 +104,7 @@ export function DataTable<TData, TValue>({
             >
               {row.getVisibleCells().map((cell) => (
                 <TableCell key={cell.id}>
-                  {flexRender(
-                    cell.column.columnDef.cell,
-                    cell.getContext(),
-                  )}
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
               ))}
             </TableRow>
@@ -115,10 +112,7 @@ export function DataTable<TData, TValue>({
         )
       ) : (
         <TableRow>
-          <TableCell
-            colSpan={tableColumns.length}
-            className="h-24 text-center"
-          >
+          <TableCell colSpan={tableColumns.length} className="h-24 text-center">
             Нет данных.
           </TableCell>
         </TableRow>
@@ -176,9 +170,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <div className="overflow-hidden rounded-md border">
-        {tableContent}
-      </div>
+      <div className="overflow-hidden rounded-md border">{tableContent}</div>
       {pagination.isEnabled && pagination.limit != null && (
         <TablePagination
           pageSizeOptions={pagination.pageSizeOptions}

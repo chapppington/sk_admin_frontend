@@ -1,14 +1,17 @@
 "use client"
 
-import { useCallback, useState } from "react"
-import { IconExternalLink, IconFileUpload, IconTrash } from "@tabler/icons-react"
-import { useId } from "react"
-import mediaService from "@/services/media/media.service"
+import {
+  IconExternalLink,
+  IconFileUpload,
+  IconTrash,
+} from "@tabler/icons-react"
+import { useCallback, useId, useState } from "react"
 import { toast } from "sonner"
+import { MiniLoader } from "@/components/ui/MiniLoader"
+import mediaService from "@/services/media/media.service"
 import { Button } from "@/shared/ui/button"
 import { cn } from "@/shared/utils"
 import { getErrorMessage } from "@/shared/utils/error"
-import { MiniLoader } from "@/components/ui/MiniLoader"
 
 export interface FileUploaderProps {
   bucketName: string
@@ -60,7 +63,7 @@ export function FileUploader({
     onChange?.(null)
   }, [onChange])
 
-  const fileName = value ? value.split("/").pop() ?? value : null
+  const fileName = value ? (value.split("/").pop() ?? value) : null
 
   return (
     <div className={cn("space-y-2", className)}>
@@ -109,11 +112,7 @@ export function FileUploader({
             className="flex-1"
             asChild
           >
-            <a
-              href={value}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={value} target="_blank" rel="noopener noreferrer">
               <IconExternalLink className="size-4 mr-1" />
               Смотреть
             </a>

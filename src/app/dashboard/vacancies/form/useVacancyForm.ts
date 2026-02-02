@@ -2,10 +2,7 @@
 
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { useVacancies } from "@/hooks/useVacancies"
-import type {
-  IVacancy,
-  IVacancyCreatePayload,
-} from "@/types/vacancies.types"
+import type { IVacancy, IVacancyCreatePayload } from "@/types/vacancies.types"
 
 export type VacancyFormValues = {
   title: string
@@ -39,7 +36,10 @@ export type UseVacancyFormParams = {
   onOpenChange: (open: boolean) => void
 }
 
-export function useVacancyForm({ vacancy, onOpenChange }: UseVacancyFormParams) {
+export function useVacancyForm({
+  vacancy,
+  onOpenChange,
+}: UseVacancyFormParams) {
   const { createMutation, updateMutation } = useVacancies()
   const isEdit = Boolean(vacancy?.oid)
   const form = useForm<VacancyFormValues>({

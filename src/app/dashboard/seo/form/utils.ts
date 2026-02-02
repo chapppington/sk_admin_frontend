@@ -1,6 +1,11 @@
-import type { ISeoSettings, ISeoSettingsCreate } from "@/types/seo-settings.types"
+import type {
+  ISeoSettings,
+  ISeoSettingsCreate,
+} from "@/types/seo-settings.types"
 
-export function toFormValues(seoSettings: ISeoSettings | null): ISeoSettingsCreate {
+export function toFormValues(
+  seoSettings: ISeoSettings | null,
+): ISeoSettingsCreate {
   if (!seoSettings) {
     return {
       page_path: "",

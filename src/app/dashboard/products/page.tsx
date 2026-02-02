@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from "react"
 import { useQueryClient } from "@tanstack/react-query"
+import { useState } from "react"
 import { toast } from "sonner"
 import { DataTable } from "@/components/DataTable"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import { useProducts } from "@/hooks/useProducts"
-import type { IProduct } from "@/types/products.types"
 import { Button } from "@/shared/ui/button"
+import type { IProduct } from "@/types/products.types"
 import { getProductsColumns } from "./columns"
 import { ProductDialog } from "./dialog/ProductDialog"
 

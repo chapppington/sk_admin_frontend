@@ -1,13 +1,13 @@
 "use client"
 
-import type { IProduct } from "@/types/products.types"
+import { ProductForm } from "@/app/dashboard/products/form/ProductForm"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/shared/ui/dialog"
-import { ProductForm } from "@/app/dashboard/products/form/ProductForm"
+import type { IProduct } from "@/types/products.types"
 
 type ProductDialogProps = {
   open: boolean
@@ -30,9 +30,7 @@ export function ProductDialog({
             {isEdit ? "Редактировать продукт" : "Создать продукт"}
           </DialogTitle>
         </DialogHeader>
-        {open && (
-          <ProductForm product={product} onOpenChange={onOpenChange} />
-        )}
+        {open && <ProductForm product={product} onOpenChange={onOpenChange} />}
       </DialogContent>
     </Dialog>
   )

@@ -2,16 +2,11 @@
 
 import { IconPlus, IconTrash } from "@tabler/icons-react"
 import { Controller, useFieldArray } from "react-hook-form"
+import { PortfolioMultiSelect } from "@/app/dashboard/products/form/PortfolioMultiSelect"
 import { useProductForm } from "@/app/dashboard/products/form/useProductForm"
 import { CroppedImageUploader } from "@/components/CroppedImageUploader"
 import { FileUploader } from "@/components/FileUploader"
-import { PortfolioMultiSelect } from "@/app/dashboard/products/form/PortfolioMultiSelect"
 import { MiniLoader } from "@/components/ui/MiniLoader"
-import type {
-  IProduct,
-  Documentation,
-} from "@/types/products.types"
-import { PRODUCT_CATEGORIES } from "@/types/products.types"
 import { BUCKET_NAMES } from "@/config/buckets"
 import { Button } from "@/shared/ui/button"
 import { DialogFooter } from "@/shared/ui/dialog"
@@ -27,6 +22,8 @@ import {
 import { Switch } from "@/shared/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/ui/tabs"
 import { Textarea } from "@/shared/ui/textarea"
+import type { Documentation, IProduct } from "@/types/products.types"
+import { PRODUCT_CATEGORIES } from "@/types/products.types"
 
 const STEPS = [
   { value: "main", label: "Основное" },
@@ -44,14 +41,8 @@ type ProductFormProps = {
 }
 
 export function ProductForm({ product, onOpenChange }: ProductFormProps) {
-  const {
-    register,
-    handleSubmit,
-    control,
-    setValue,
-    isEdit,
-    isLoading,
-  } = useProductForm({ product, onOpenChange })
+  const { register, handleSubmit, control, setValue, isEdit, isLoading } =
+    useProductForm({ product, onOpenChange })
 
   const importantCharacteristicsFields = useFieldArray({
     control,
@@ -339,7 +330,9 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
         </TabsContent>
         <TabsContent value="descriptions">
           <FieldGroup>
-            <FieldLabel>Краткие описания (пункты, не более {MAX_SIMPLE_DESCRIPTIONS})</FieldLabel>
+            <FieldLabel>
+              Краткие описания (пункты, не более {MAX_SIMPLE_DESCRIPTIONS})
+            </FieldLabel>
             <div className="flex flex-col gap-2 mb-4">
               {simpleDescriptionFields.fields.map((field, index) => (
                 <div key={field.id} className="flex gap-2">
@@ -359,14 +352,13 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
                   </Button>
                 </div>
               ))}
-              {simpleDescriptionFields.fields.length < MAX_SIMPLE_DESCRIPTIONS && (
+              {simpleDescriptionFields.fields.length <
+                MAX_SIMPLE_DESCRIPTIONS && (
                 <Button
                   type="button"
                   variant="outline"
                   size="sm"
-                  onClick={() =>
-                    simpleDescriptionFields.append({ text: "" })
-                  }
+                  onClick={() => simpleDescriptionFields.append({ text: "" })}
                 >
                   <IconPlus className="size-4 mr-1" />
                   Добавить пункт
@@ -453,7 +445,12 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
                           onChange={(url) => {
                             urlField.onChange(url ?? "")
                             if (url) {
-                              const ext = url.split("?")[0].split(".").pop()?.toLowerCase() ?? ""
+                              const ext =
+                                url
+                                  .split("?")[0]
+                                  .split(".")
+                                  .pop()
+                                  ?.toLowerCase() ?? ""
                               setValue(`documentation.${index}.type`, ext)
                             }
                           }}

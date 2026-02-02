@@ -1,13 +1,13 @@
 "use client"
 
-import type { INews } from "@/types/news.types"
+import { NewsForm } from "@/app/dashboard/news/form/NewsForm"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/shared/ui/dialog"
-import { NewsForm } from "@/app/dashboard/news/form/NewsForm"
+import type { INews } from "@/types/news.types"
 
 type NewsDialogProps = {
   open: boolean

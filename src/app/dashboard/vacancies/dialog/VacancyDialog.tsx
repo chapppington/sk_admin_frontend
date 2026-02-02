@@ -1,13 +1,13 @@
 "use client"
 
-import type { IVacancy } from "@/types/vacancies.types"
+import { VacancyForm } from "@/app/dashboard/vacancies/form/VacancyForm"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/shared/ui/dialog"
-import { VacancyForm } from "@/app/dashboard/vacancies/form/VacancyForm"
+import type { IVacancy } from "@/types/vacancies.types"
 
 type VacancyDialogProps = {
   open: boolean
@@ -35,4 +35,4 @@ export function VacancyDialog({
     </Dialog>
   )
 }
-// 
+//

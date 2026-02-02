@@ -4,7 +4,6 @@ import { Controller, useWatch } from "react-hook-form"
 import { usePortfolioForm } from "@/app/dashboard/portfolio/form/usePortfolioForm"
 import { CroppedImageUploader } from "@/components/CroppedImageUploader"
 import { MiniLoader } from "@/components/ui/MiniLoader"
-import type { IPortfolio } from "@/types/portfolios.types"
 import { BUCKET_NAMES } from "@/config/buckets"
 import { Button } from "@/shared/ui/button"
 import { DialogFooter } from "@/shared/ui/dialog"
@@ -13,6 +12,7 @@ import { Input } from "@/shared/ui/input"
 import { Switch } from "@/shared/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/ui/tabs"
 import { Textarea } from "@/shared/ui/textarea"
+import type { IPortfolio } from "@/types/portfolios.types"
 
 const STEPS = [
   { value: "main", label: "Основное" },
@@ -27,15 +27,14 @@ type PortfolioFormProps = {
 }
 
 export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
-  const {
-    register,
-    handleSubmit,
-    control,
-    isEdit,
-    isLoading,
-  } = usePortfolioForm({ portfolio, onOpenChange })
+  const { register, handleSubmit, control, isEdit, isLoading } =
+    usePortfolioForm({ portfolio, onOpenChange })
 
-  const hasReview = useWatch({ control, name: "has_review", defaultValue: false })
+  const hasReview = useWatch({
+    control,
+    name: "has_review",
+    defaultValue: false,
+  })
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -55,7 +54,10 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
           <FieldGroup>
             <Field>
               <FieldLabel>Название</FieldLabel>
-              <Input {...register("name", { required: true })} placeholder="Название проекта" />
+              <Input
+                {...register("name", { required: true })}
+                placeholder="Название проекта"
+              />
             </Field>
             <Field>
               <FieldLabel>Год</FieldLabel>
@@ -90,7 +92,10 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
             </Field>
             <Field>
               <FieldLabel>Alt постера</FieldLabel>
-              <Input {...register("poster_alt", { required: true })} placeholder="Описание изображения" />
+              <Input
+                {...register("poster_alt", { required: true })}
+                placeholder="Описание изображения"
+              />
             </Field>
           </FieldGroup>
         </TabsContent>
@@ -98,7 +103,10 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
           <FieldGroup>
             <Field>
               <FieldLabel>Задача (заголовок)</FieldLabel>
-              <Input {...register("task_title", { required: true })} placeholder="Заголовок задачи" />
+              <Input
+                {...register("task_title", { required: true })}
+                placeholder="Заголовок задачи"
+              />
             </Field>
             <Field>
               <FieldLabel>Задача (описание)</FieldLabel>
@@ -114,7 +122,10 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
           <FieldGroup>
             <Field>
               <FieldLabel>Решение (заголовок)</FieldLabel>
-              <Input {...register("solution_title", { required: true })} placeholder="Заголовок решения" />
+              <Input
+                {...register("solution_title", { required: true })}
+                placeholder="Заголовок решения"
+              />
             </Field>
             <Field>
               <FieldLabel>Решение (описание)</FieldLabel>
@@ -126,7 +137,10 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
             </Field>
             <Field>
               <FieldLabel>Решение (подзаголовок)</FieldLabel>
-              <Input {...register("solution_subtitle", { required: true })} placeholder="Подзаголовок" />
+              <Input
+                {...register("solution_subtitle", { required: true })}
+                placeholder="Подзаголовок"
+              />
             </Field>
             <Field>
               <FieldLabel>Решение (подописание)</FieldLabel>
@@ -154,7 +168,10 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
             </Field>
             <Field>
               <FieldLabel>Alt изображения (слева)</FieldLabel>
-              <Input {...register("solution_image_left_alt", { required: true })} placeholder="Описание изображения" />
+              <Input
+                {...register("solution_image_left_alt", { required: true })}
+                placeholder="Описание изображения"
+              />
             </Field>
             <Field>
               <FieldLabel>Изображение решения (справа)</FieldLabel>
@@ -174,7 +191,10 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
             </Field>
             <Field>
               <FieldLabel>Alt изображения (справа)</FieldLabel>
-              <Input {...register("solution_image_right_alt", { required: true })} placeholder="Описание изображения" />
+              <Input
+                {...register("solution_image_right_alt", { required: true })}
+                placeholder="Описание изображения"
+              />
             </Field>
           </FieldGroup>
         </TabsContent>
@@ -200,11 +220,18 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
               <>
                 <Field>
                   <FieldLabel>Отзыв (заголовок)</FieldLabel>
-                  <Input {...register("review_title")} placeholder="Заголовок отзыва" />
+                  <Input
+                    {...register("review_title")}
+                    placeholder="Заголовок отзыва"
+                  />
                 </Field>
                 <Field>
                   <FieldLabel>Текст отзыва</FieldLabel>
-                  <Textarea {...register("review_text")} placeholder="Текст отзыва" rows={2} />
+                  <Textarea
+                    {...register("review_text")}
+                    placeholder="Текст отзыва"
+                    rows={2}
+                  />
                 </Field>
                 <Field>
                   <FieldLabel>Имя автора отзыва</FieldLabel>

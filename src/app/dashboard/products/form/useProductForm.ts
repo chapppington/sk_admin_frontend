@@ -1,17 +1,20 @@
 "use client"
 
 import { type SubmitHandler, useForm } from "react-hook-form"
-import { useProducts } from "@/hooks/useProducts"
-import type { IProduct, IProductCreate } from "@/types/products.types"
-import { slugify } from "@/shared/utils/slugify"
 import { toFormValues } from "@/app/dashboard/products/form/utils"
+import { useProducts } from "@/hooks/useProducts"
+import { slugify } from "@/shared/utils/slugify"
+import type { IProduct, IProductCreate } from "@/types/products.types"
 
 export type UseProductFormParams = {
   product: IProduct | null
   onOpenChange: (open: boolean) => void
 }
 
-export function useProductForm({ product, onOpenChange }: UseProductFormParams) {
+export function useProductForm({
+  product,
+  onOpenChange,
+}: UseProductFormParams) {
   const { createMutation, updateMutation } = useProducts()
   const isEdit = Boolean(product?.oid)
   const form = useForm<IProductCreate>({
@@ -39,8 +42,7 @@ export function useProductForm({ product, onOpenChange }: UseProductFormParams) 
         alt: a.alt || null,
         description: a.description ?? "",
       })),
-      documentation:
-        data.documentation?.length ? data.documentation : null,
+      documentation: data.documentation?.length ? data.documentation : null,
       portfolio_ids: data.portfolio_ids.filter(Boolean),
     }
     if (isEdit && product) {

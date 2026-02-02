@@ -1,13 +1,13 @@
 "use client"
 
-import type { ISeoSettings } from "@/types/seo-settings.types"
+import { SeoSettingsForm } from "@/app/dashboard/seo/form/SeoSettingsForm"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/shared/ui/dialog"
-import { SeoSettingsForm } from "@/app/dashboard/seo/form/SeoSettingsForm"
+import type { ISeoSettings } from "@/types/seo-settings.types"
 
 type SeoSettingsDialogProps = {
   open: boolean
@@ -15,7 +15,11 @@ type SeoSettingsDialogProps = {
   seoSettings: ISeoSettings | null
 }
 
-export function SeoSettingsDialog({ open, onOpenChange, seoSettings }: SeoSettingsDialogProps) {
+export function SeoSettingsDialog({
+  open,
+  onOpenChange,
+  seoSettings,
+}: SeoSettingsDialogProps) {
   const isEdit = Boolean(seoSettings?.oid)
 
   return (
@@ -23,11 +27,16 @@ export function SeoSettingsDialog({ open, onOpenChange, seoSettings }: SeoSettin
       <DialogContent className="max-h-[90vh] overflow-y-auto overflow-x-hidden sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>
-            {isEdit ? "Редактировать набор мета тегов" : "Создать набор мета тегов"}
+            {isEdit
+              ? "Редактировать набор мета тегов"
+              : "Создать набор мета тегов"}
           </DialogTitle>
         </DialogHeader>
         {open && (
-          <SeoSettingsForm seoSettings={seoSettings} onOpenChange={onOpenChange} />
+          <SeoSettingsForm
+            seoSettings={seoSettings}
+            onOpenChange={onOpenChange}
+          />
         )}
       </DialogContent>
     </Dialog>

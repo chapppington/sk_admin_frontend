@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import productsService from "@/services/products/products.service"
+import { getErrorMessage } from "@/shared/utils/error"
 import type {
   IProductCreate,
   IProductsListParams,
   IProductUpdate,
 } from "@/types/products.types"
-import { getErrorMessage } from "@/shared/utils/error"
 
 export function useProducts(params?: IProductsListParams) {
   const queryClient = useQueryClient()

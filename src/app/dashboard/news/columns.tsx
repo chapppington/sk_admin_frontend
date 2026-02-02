@@ -4,8 +4,8 @@ import type { ColumnDef } from "@tanstack/react-table"
 
 import { ActionsCell } from "@/components/DataTable/ActionsCell"
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback"
-import type { INews } from "@/types/news.types"
 import { formatDate } from "@/shared/utils/date"
+import type { INews } from "@/types/news.types"
 
 const PREVIEW_WIDTH = 96
 const PREVIEW_HEIGHT = Math.round((PREVIEW_WIDTH * 9) / 16)
@@ -67,7 +67,12 @@ export function getNewsColumns(
       id: "actions",
       header: "Действия",
       cell: ({ row }) => (
-        <ActionsCell item={row.original} onEdit={onEdit} onDelete={onDelete} deleteConfirmMessage="Удалить новость?" />
+        <ActionsCell
+          item={row.original}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          deleteConfirmMessage="Удалить новость?"
+        />
       ),
     },
   ]

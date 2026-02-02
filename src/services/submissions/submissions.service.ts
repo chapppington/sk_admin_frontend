@@ -1,9 +1,9 @@
 import { axiosAuth } from "@/api/axios"
+import type { ApiResponse, ListPaginatedResponse } from "@/types/api.types"
 import type {
-  ApiResponse,
-  ListPaginatedResponse,
-} from "@/types/api.types"
-import type { ISubmission, ISubmissionsListParams } from "@/types/submissions.types"
+  ISubmission,
+  ISubmissionsListParams,
+} from "@/types/submissions.types"
 
 class SubmissionsService {
   private _BASE_URL = "/submissions"

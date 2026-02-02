@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import seoSettingsService from "@/services/seo-settings/seo-settings.service"
+import { getErrorMessage } from "@/shared/utils/error"
 import type {
   ISeoSettingsCreate,
   ISeoSettingsListParams,
   ISeoSettingsUpdate,
 } from "@/types/seo-settings.types"
-import { getErrorMessage } from "@/shared/utils/error"
 
 export function useSeoSettings(params?: ISeoSettingsListParams) {
   const queryClient = useQueryClient()

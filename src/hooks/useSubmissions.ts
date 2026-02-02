@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import submissionsService from "@/services/submissions/submissions.service"
-import type { ISubmissionsListParams } from "@/types/submissions.types"
 import { getErrorMessage } from "@/shared/utils/error"
+import type { ISubmissionsListParams } from "@/types/submissions.types"
 
 export function useSubmissions(params?: ISubmissionsListParams) {
   const queryClient = useQueryClient()

@@ -12,14 +12,17 @@ export default function SubmissionsPage() {
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [selectedSubmission, setSelectedSubmission] = useState<ISubmission | null>(null)
+  const [selectedSubmission, setSelectedSubmission] =
+    useState<ISubmission | null>(null)
 
-  const { submissions, pagination, isLoading, deleteMutation } = useSubmissions({
-    limit,
-    offset,
-    sort_field: "created_at",
-    sort_order: -1,
-  })
+  const { submissions, pagination, isLoading, deleteMutation } = useSubmissions(
+    {
+      limit,
+      offset,
+      sort_field: "created_at",
+      sort_order: -1,
+    },
+  )
 
   const handleView = (item: ISubmission) => {
     setSelectedSubmission(item)

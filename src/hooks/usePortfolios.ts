@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import portfoliosService from "@/services/portfolios/portfolios.service"
+import { getErrorMessage } from "@/shared/utils/error"
 import type {
   IPortfolioCreate,
   IPortfolioListParams,
   IPortfolioUpdate,
 } from "@/types/portfolios.types"
-import { getErrorMessage } from "@/shared/utils/error"
 
 export function usePortfolios(params?: IPortfolioListParams) {
   const queryClient = useQueryClient()

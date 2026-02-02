@@ -27,13 +27,11 @@ export function toFormValues(product: IProduct | null): IProductCreate {
     description: product.description,
     preview_image_url: product.preview_image_url,
     preview_image_alt: product.preview_image_alt,
-    important_characteristics: product.important_characteristics.map(
-      (c) => ({
-        value: c.value,
-        unit: c.unit ? { text: c.unit.text } : { text: "" },
-        description: c.description,
-      }),
-    ),
+    important_characteristics: product.important_characteristics.map((c) => ({
+      value: c.value,
+      unit: c.unit ? { text: c.unit.text } : { text: "" },
+      description: c.description,
+    })),
     advantages: product.advantages.map((a) => ({
       label: a.label,
       icon: a.icon,
@@ -41,7 +39,9 @@ export function toFormValues(product: IProduct | null): IProductCreate {
       alt: a.alt,
       description: a.description,
     })),
-    simple_description: product.simple_description.map((s) => ({ text: s.text })),
+    simple_description: product.simple_description.map((s) => ({
+      text: s.text,
+    })),
     detailed_description: product.detailed_description.map((d) => ({
       title: d.title,
       description: d.description,

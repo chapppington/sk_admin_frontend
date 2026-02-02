@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import vacanciesService from "@/services/vacancies/vacancies.service"
+import { getErrorMessage } from "@/shared/utils/error"
 import type {
   IVacancyCreatePayload,
   IVacancyListParams,
   IVacancyUpdate,
 } from "@/types/vacancies.types"
-import { getErrorMessage } from "@/shared/utils/error"
 
 export function useVacancies(params?: IVacancyListParams) {
   const queryClient = useQueryClient()

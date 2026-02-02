@@ -3,8 +3,8 @@
 import type { ColumnDef } from "@tanstack/react-table"
 
 import { ActionsCell } from "@/components/DataTable/ActionsCell"
-import type { ISubmission } from "@/types/submissions.types"
 import { formatDateTime } from "@/shared/utils/date"
+import type { ISubmission } from "@/types/submissions.types"
 
 export function getSubmissionsColumns(
   onView: (submission: ISubmission) => void,

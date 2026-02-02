@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import newsService from "@/services/news/news.service"
+import { getErrorMessage } from "@/shared/utils/error"
 import type {
   INewsCreatePayload,
   INewsListParams,
   INewsUpdate,
 } from "@/types/news.types"
-import { getErrorMessage } from "@/shared/utils/error"
 
 export function useNews(params?: INewsListParams) {
   const queryClient = useQueryClient()

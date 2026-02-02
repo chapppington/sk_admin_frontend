@@ -4,7 +4,6 @@ import { Controller } from "react-hook-form"
 import { useSeoSettingsForm } from "@/app/dashboard/seo/form/useSeoSettingsForm"
 import { CroppedImageUploader } from "@/components/CroppedImageUploader"
 import { MiniLoader } from "@/components/ui/MiniLoader"
-import type { ISeoSettings } from "@/types/seo-settings.types"
 import { BUCKET_NAMES } from "@/config/buckets"
 import { Button } from "@/shared/ui/button"
 import { DialogFooter } from "@/shared/ui/dialog"
@@ -12,20 +11,19 @@ import { Field, FieldGroup, FieldLabel } from "@/shared/ui/field"
 import { Input } from "@/shared/ui/input"
 import { Switch } from "@/shared/ui/switch"
 import { Textarea } from "@/shared/ui/textarea"
+import type { ISeoSettings } from "@/types/seo-settings.types"
 
 type SeoSettingsFormProps = {
   seoSettings: ISeoSettings | null
   onOpenChange: (open: boolean) => void
 }
 
-export function SeoSettingsForm({ seoSettings, onOpenChange }: SeoSettingsFormProps) {
-  const {
-    register,
-    handleSubmit,
-    control,
-    isEdit,
-    isLoading,
-  } = useSeoSettingsForm({ seoSettings, onOpenChange })
+export function SeoSettingsForm({
+  seoSettings,
+  onOpenChange,
+}: SeoSettingsFormProps) {
+  const { register, handleSubmit, control, isEdit, isLoading } =
+    useSeoSettingsForm({ seoSettings, onOpenChange })
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -65,7 +63,10 @@ export function SeoSettingsForm({ seoSettings, onOpenChange }: SeoSettingsFormPr
         </Field>
         <Field>
           <FieldLabel>OG Title</FieldLabel>
-          <Input {...register("og_title")} placeholder="Заголовок для соцсетей" />
+          <Input
+            {...register("og_title")}
+            placeholder="Заголовок для соцсетей"
+          />
         </Field>
         <Field>
           <FieldLabel>OG Description</FieldLabel>

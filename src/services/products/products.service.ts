@@ -1,8 +1,5 @@
 import { axiosAuth } from "@/api/axios"
-import type {
-  ApiResponse,
-  ListPaginatedResponse,
-} from "@/types/api.types"
+import type { ApiResponse, ListPaginatedResponse } from "@/types/api.types"
 import type {
   IProduct,
   IProductCreate,

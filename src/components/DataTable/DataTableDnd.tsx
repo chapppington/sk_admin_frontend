@@ -2,13 +2,13 @@
 
 import {
   DndContext,
+  type DragEndEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
+  type UniqueIdentifier,
   useSensor,
   useSensors,
-  type DragEndEvent,
-  type UniqueIdentifier,
 } from "@dnd-kit/core"
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers"
 import {
@@ -19,10 +19,10 @@ import {
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import { IconGripVertical } from "@tabler/icons-react"
-import { type Row, flexRender } from "@tanstack/react-table"
+import { flexRender, type Row } from "@tanstack/react-table"
 import { useCallback, useMemo } from "react"
-import { TableCell, TableRow } from "@/shared/ui/table"
 import { Button } from "@/shared/ui/button"
+import { TableCell, TableRow } from "@/shared/ui/table"
 
 export function DragHandle({ id }: { id: UniqueIdentifier }) {
   const { attributes, listeners } = useSortable({ id })
@@ -91,7 +91,9 @@ export function useDataTableDnd<TData>({
 
   const sensors = useSensors(
     useSensor(MouseSensor, { activationConstraint: { distance: 5 } }),
-    useSensor(TouchSensor, { activationConstraint: { delay: 100, tolerance: 5 } }),
+    useSensor(TouchSensor, {
+      activationConstraint: { delay: 100, tolerance: 5 },
+    }),
     useSensor(KeyboardSensor),
   )
 
@@ -104,7 +106,9 @@ export function useDataTableDnd<TData>({
       if (oldIndex === -1 || newIndex === -1) return
       const reordered = arrayMove(localData, oldIndex, newIndex)
       const newData =
-        getOrderForIndex && reordered.length > 0 && "order" in (reordered[0] as object)
+        getOrderForIndex &&
+        reordered.length > 0 &&
+        "order" in (reordered[0] as object)
           ? (reordered.map((item, i) => ({
               ...(item as object),
               order: getOrderForIndex(i),
