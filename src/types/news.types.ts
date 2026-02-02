@@ -1,3 +1,13 @@
+export const NEWS_CATEGORIES = [
+  "Производство",
+  "Разработки",
+  "Полезное",
+  "События",
+  "Наши проекты",
+] as const
+
+export type NewsCategory = (typeof NEWS_CATEGORIES)[number]
+
 export interface INews {
   oid: string
   category: string

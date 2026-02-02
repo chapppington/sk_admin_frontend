@@ -1,6 +1,7 @@
 export const BUCKET_NAMES = {
   news: "news",
   portfolios: "portfolios",
+  products: "products",
   seo: "seo",
 } as const
 

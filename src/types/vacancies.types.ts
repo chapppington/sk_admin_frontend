@@ -1,3 +1,12 @@
+export const VACANCY_CATEGORIES = [
+  "Кадровый резерв",
+  "Производство",
+  "Продажи и маркетинг",
+  "Офис компании",
+] as const
+
+export type VacancyCategory = (typeof VACANCY_CATEGORIES)[number]
+
 export interface IVacancy {
   oid: string
   title: string

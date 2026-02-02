@@ -2,10 +2,8 @@
 
 import { IconPlus, IconTrash } from "@tabler/icons-react"
 import { Controller, useFieldArray } from "react-hook-form"
-import {
-  useVacancyForm,
-  VALID_VACANCY_CATEGORIES,
-} from "@/app/dashboard/vacancies/form/useVacancyForm"
+import { useVacancyForm } from "@/app/dashboard/vacancies/form/useVacancyForm"
+import { VACANCY_CATEGORIES } from "@/types/vacancies.types"
 import type { IVacancy } from "@/types/vacancies.types"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import { Button } from "@/shared/ui/button"
@@ -63,7 +61,7 @@ export function VacancyForm({ vacancy, onOpenChange }: VacancyFormProps) {
                   <SelectValue placeholder="Выберите категорию" />
                 </SelectTrigger>
                 <SelectContent>
-                  {VALID_VACANCY_CATEGORIES.map((cat) => (
+                  {VACANCY_CATEGORIES.map((cat) => (
                     <SelectItem key={cat} value={cat}>
                       {cat}
                     </SelectItem>

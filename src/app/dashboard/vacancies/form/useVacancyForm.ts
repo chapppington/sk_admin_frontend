@@ -7,13 +7,6 @@ import type {
   IVacancyCreatePayload,
 } from "@/types/vacancies.types"
 
-export const VALID_VACANCY_CATEGORIES = [
-  "Кадровый резерв",
-  "Производство",
-  "Продажи и маркетинг",
-  "Офис компании",
-] as const
-
 export type VacancyFormValues = {
   title: string
   category: string

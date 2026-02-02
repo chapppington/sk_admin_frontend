@@ -7,14 +7,6 @@ import { getReadingTimeMinutes } from "@/shared/utils/reading-time"
 import { slugify } from "@/shared/utils/slugify"
 import { toFormValues } from "@/app/dashboard/news/form/utils"
 
-export const VALID_NEWS_CATEGORIES = [
-  "Производство",
-  "Разработки",
-  "Полезное",
-  "События",
-  "Наши проекты",
-] as const
-
 export type UseNewsFormParams = {
   news: INews | null
   onOpenChange: (open: boolean) => void

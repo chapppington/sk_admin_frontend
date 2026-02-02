@@ -1,10 +1,8 @@
 "use client"
 
 import { Controller } from "react-hook-form"
-import {
-  useNewsForm,
-  VALID_NEWS_CATEGORIES,
-} from "@/app/dashboard/news/form/useNewsForm"
+import { useNewsForm } from "@/app/dashboard/news/form/useNewsForm"
+import { NEWS_CATEGORIES } from "@/types/news.types"
 import { CroppedImageUploader } from "@/components/CroppedImageUploader"
 import { MiniLoader } from "@/components/ui/MiniLoader"
 import type { INews } from "@/types/news.types"
@@ -56,7 +54,7 @@ export function NewsForm({ news, onOpenChange }: NewsFormProps) {
                     <SelectValue placeholder="Выберите категорию" />
                   </SelectTrigger>
                   <SelectContent>
-                    {VALID_NEWS_CATEGORIES.map((cat) => (
+                    {NEWS_CATEGORIES.map((cat) => (
                       <SelectItem key={cat} value={cat}>
                         {cat}
                       </SelectItem>
