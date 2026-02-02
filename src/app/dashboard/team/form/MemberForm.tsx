@@ -22,8 +22,11 @@ export function MemberForm({
   onOpenChange,
   defaultOrder = 0,
 }: MemberFormProps) {
-  const { register, handleSubmit, control, isEdit, isLoading } =
-    useMemberForm({ member, onOpenChange, defaultOrder })
+  const { register, handleSubmit, control, isEdit, isLoading } = useMemberForm({
+    member,
+    onOpenChange,
+    defaultOrder,
+  })
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -68,7 +71,11 @@ export function MemberForm({
         </Field>
       </FieldGroup>
       <DialogFooter>
-        <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => onOpenChange(false)}
+        >
           Отмена
         </Button>
         <Button type="submit" disabled={isLoading}>

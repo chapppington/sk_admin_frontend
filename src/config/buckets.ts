@@ -5,6 +5,7 @@ export const BUCKET_NAMES = {
   seo: "seo",
   certificates: "certificates",
   team: "team",
+  reviews: "reviews",
 } as const
 
 export type BucketName = (typeof BUCKET_NAMES)[keyof typeof BUCKET_NAMES]

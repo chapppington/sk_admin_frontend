@@ -64,9 +64,7 @@ export function ActionsCell<T>({
           </Button>
         </PopoverTrigger>
         <PopoverContent align="end" className="w-56">
-          <p className="text-muted-foreground text-sm">
-            {deleteConfirmMessage}
-          </p>
+          <p className="text-foreground text-sm">{deleteConfirmMessage}</p>
           <div className="mt-3 flex justify-end gap-2">
             <Button
               variant="outline"

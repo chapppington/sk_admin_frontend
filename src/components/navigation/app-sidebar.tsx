@@ -4,6 +4,7 @@ import {
   IconBriefcase,
   IconCertificate,
   IconClipboardList,
+  IconMessageCircle2,
   IconNews,
   IconPackage,
   IconSettings,
@@ -36,8 +37,12 @@ import { Skeleton } from "@/shared/ui/skeleton"
 
 const navMainItems = [
   { title: "Новости", url: `${DASHBOARD_HOME}/news`, icon: IconNews },
+  {
+    title: "Заявки",
+    url: `${DASHBOARD_HOME}/submissions`,
+    icon: IconClipboardList,
+  },
   { title: "Продукция", url: `${DASHBOARD_HOME}/products`, icon: IconPackage },
-  { title: "Команда", url: `${DASHBOARD_HOME}/team`, icon: IconUsersGroup },
   {
     title: "Вакансии",
     url: `${DASHBOARD_HOME}/vacancies`,
@@ -48,16 +53,14 @@ const navMainItems = [
     url: `${DASHBOARD_HOME}/portfolio`,
     icon: IconBriefcase,
   },
+  
   {
     title: "Сертификаты",
     url: `${DASHBOARD_HOME}/certificates`,
     icon: IconCertificate,
   },
-  {
-    title: "Заявки",
-    url: `${DASHBOARD_HOME}/submissions`,
-    icon: IconClipboardList,
-  },
+  { title: "Отзывы", url: `${DASHBOARD_HOME}/reviews`, icon: IconMessageCircle2 },
+  { title: "Команда", url: `${DASHBOARD_HOME}/team`, icon: IconUsersGroup },
 ]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {

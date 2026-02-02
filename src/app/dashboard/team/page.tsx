@@ -18,18 +18,13 @@ export default function TeamPage() {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [selectedMember, setSelectedMember] = useState<IMember | null>(null)
 
-  const {
-    members,
-    pagination,
-    isLoading,
-    deleteMutation,
-    patchOrderMutation,
-  } = useMembers({
-    limit,
-    offset,
-    sort_field: "order",
-    sort_order: 1,
-  })
+  const { members, pagination, isLoading, deleteMutation, patchOrderMutation } =
+    useMembers({
+      limit,
+      offset,
+      sort_field: "order",
+      sort_order: 1,
+    })
 
   const defaultOrder = pagination?.total ?? members.length
 

@@ -16,9 +16,6 @@ export interface IMembersListParams {
   sort_order?: number
 }
 
-export type IMemberCreate = Omit<
-  IMember,
-  "oid" | "created_at" | "updated_at"
->
+export type IMemberCreate = Omit<IMember, "oid" | "created_at" | "updated_at">
 
 export type IMemberUpdate = Partial<IMemberCreate>

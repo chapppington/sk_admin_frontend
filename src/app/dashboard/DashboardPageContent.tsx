@@ -4,6 +4,7 @@ import {
   IconBriefcase,
   IconCertificate,
   IconClipboardList,
+  IconMessageCircle2,
   IconNews,
   IconPackage,
   IconSettings,
@@ -23,7 +24,6 @@ const navItems = [
     icon: IconClipboardList,
   },
   { title: "Продукция", href: `${DASHBOARD_HOME}/products`, icon: IconPackage },
-  { title: "Команда", href: `${DASHBOARD_HOME}/team`, icon: IconUsersGroup },
   { title: "Вакансии", href: `${DASHBOARD_HOME}/vacancies`, icon: IconUsers },
   {
     title: "Портфолио",
@@ -35,6 +35,8 @@ const navItems = [
     href: `${DASHBOARD_HOME}/certificates`,
     icon: IconCertificate,
   },
+  { title: "Команда", href: `${DASHBOARD_HOME}/team`, icon: IconUsersGroup },
+  { title: "Отзывы", href: `${DASHBOARD_HOME}/reviews`, icon: IconMessageCircle2 },
   {
     title: "Наборы мета тегов",
     href: `${DASHBOARD_HOME}/seo`,
