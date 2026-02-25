@@ -7,8 +7,7 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback"
 import { Badge } from "@/shared/ui/badge"
 import type { IProduct } from "@/types/products.types"
 
-const PREVIEW_WIDTH = 80
-const PREVIEW_HEIGHT = 60
+const PREVIEW_SIZE = 64
 
 export function getProductsColumns(
   onEdit: (product: IProduct) => void,
@@ -27,9 +26,9 @@ export function getProductsColumns(
         <ImageWithFallback
           src={row.original.preview_image_url}
           alt={row.original.preview_image_alt ?? ""}
-          width={PREVIEW_WIDTH}
-          height={PREVIEW_HEIGHT}
-          containerClassName="relative w-20 h-15 shrink-0 overflow-hidden rounded border"
+          width={PREVIEW_SIZE}
+          height={PREVIEW_SIZE}
+          containerClassName="relative size-16 shrink-0 overflow-hidden rounded border"
           className="size-full object-cover"
         />
       ),

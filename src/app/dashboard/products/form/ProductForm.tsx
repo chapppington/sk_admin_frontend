@@ -130,7 +130,7 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
                     bucketName={BUCKET_NAMES.products}
                     value={field.value}
                     onChange={(url) => field.onChange(url ?? "")}
-                    aspect={4 / 3}
+                    aspect={1}
                   />
                 )}
               />
