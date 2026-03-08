@@ -21,7 +21,7 @@ import {
 } from "@/shared/ui/select"
 import { Switch } from "@/shared/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/ui/tabs"
-import { Textarea } from "@/shared/ui/textarea"
+import { AutoResizeTextarea } from "@/shared/ui/auto-resize-textarea"
 import type { Documentation, IProduct } from "@/types/products.types"
 import { PRODUCT_CATEGORIES } from "@/types/products.types"
 
@@ -83,7 +83,7 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
               <Controller
                 name="category"
                 control={control}
-                rules={{ required: true }}
+                rules={{ required: "Выберите категорию" }}
                 render={({ field }) => (
                   <Select
                     value={field.value}
@@ -107,16 +107,23 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
             <Field>
               <FieldLabel>Название</FieldLabel>
               <Input
-                {...register("name", { required: true })}
+                {...register("name", { required: "Введите название" })}
                 placeholder="Название продукта"
               />
             </Field>
             <Field>
               <FieldLabel>Описание</FieldLabel>
-              <Textarea
-                {...register("description", { required: true })}
-                placeholder="Описание"
-                rows={3}
+              <Controller
+                name="description"
+                control={control}
+                rules={{ required: "Введите описание" }}
+                render={({ field }) => (
+                  <AutoResizeTextarea
+                    {...field}
+                    placeholder="Описание"
+                    rows={3}
+                  />
+                )}
               />
             </Field>
             <Field>
@@ -124,13 +131,13 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
               <Controller
                 name="preview_image_url"
                 control={control}
-                rules={{ required: true }}
+                rules={{ required: "Загрузите превью" }}
                 render={({ field }) => (
                   <CroppedImageUploader
                     bucketName={BUCKET_NAMES.products}
                     value={field.value}
                     onChange={(url) => field.onChange(url ?? "")}
-                    aspect={1}
+                    cropEnabled={false}
                   />
                 )}
               />
@@ -261,13 +268,13 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
                   <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                     <Input
                       {...register(`advantages.${index}.label`, {
-                        required: true,
+                        required: "Введите заголовок преимущества",
                       })}
                       placeholder="Заголовок"
                     />
                     <Input
                       {...register(`advantages.${index}.icon`, {
-                        required: true,
+                        required: "Введите иконку",
                       })}
                       placeholder="Иконка (название)"
                     />
@@ -291,10 +298,16 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
                       placeholder="Alt изображения"
                     />
                   </div>
-                  <Textarea
-                    {...register(`advantages.${index}.description`)}
-                    placeholder="Описание"
-                    rows={2}
+                  <Controller
+                    name={`advantages.${index}.description`}
+                    control={control}
+                    render={({ field }) => (
+                      <AutoResizeTextarea
+                        {...field}
+                        placeholder="Описание"
+                        rows={2}
+                      />
+                    )}
                   />
                   <Button
                     type="button"
@@ -374,16 +387,21 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
                 >
                   <Input
                     {...register(`detailed_description.${index}.title`, {
-                      required: true,
+                      required: "Введите заголовок описания",
                     })}
                     placeholder="Заголовок"
                   />
-                  <Textarea
-                    {...register(`detailed_description.${index}.description`, {
-                      required: true,
-                    })}
-                    placeholder="Описание"
-                    rows={2}
+                  <Controller
+                    name={`detailed_description.${index}.description`}
+                    control={control}
+                    rules={{ required: "Введите описание" }}
+                    render={({ field }) => (
+                      <AutoResizeTextarea
+                        {...field}
+                        placeholder="Описание"
+                        rows={2}
+                      />
+                    )}
                   />
                   <Button
                     type="button"
@@ -427,7 +445,7 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
                     <FieldLabel>Название</FieldLabel>
                     <Input
                       {...register(`documentation.${index}.title`, {
-                        required: true,
+                        required: "Введите название документа",
                       })}
                       placeholder="Название документа"
                     />
@@ -435,9 +453,9 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
                   <Field>
                     <FieldLabel>Файл</FieldLabel>
                     <Controller
-                      name={`documentation.${index}.url`}
-                      control={control}
-                      rules={{ required: true }}
+                    name={`documentation.${index}.url`}
+                    control={control}
+                    rules={{ required: "Загрузите файл" }}
                       render={({ field: urlField }) => (
                         <FileUploader
                           bucketName={BUCKET_NAMES.products}

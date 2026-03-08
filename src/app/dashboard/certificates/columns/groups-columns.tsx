@@ -13,24 +13,8 @@ export function getCertificateGroupsColumns(
 ): ColumnDef<ICertificateGroup>[] {
   return [
     {
-      accessorKey: "section",
-      header: "Секция",
-    },
-    {
       accessorKey: "title",
       header: "Название",
-    },
-    {
-      accessorKey: "content",
-      header: "Описание",
-      cell: ({ row }) => {
-        const text = row.getValue("content") as string
-        return (
-          <span className="max-w-[200px] truncate block" title={text}>
-            {text}
-          </span>
-        )
-      },
     },
     {
       accessorKey: "order",

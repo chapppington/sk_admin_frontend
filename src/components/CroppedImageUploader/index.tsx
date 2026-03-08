@@ -25,6 +25,8 @@ export interface CroppedImageUploaderProps {
   aspect?: number
   className?: string
   accept?: string
+  /** Если false — загрузка без обрезки (файл как есть) */
+  cropEnabled?: boolean
 }
 
 export function CroppedImageUploader({
@@ -34,6 +36,7 @@ export function CroppedImageUploader({
   aspect = 16 / 9,
   className,
   accept = "image/*",
+  cropEnabled = true,
 }: CroppedImageUploaderProps) {
   const triggerId = useId()
   const {
@@ -51,7 +54,7 @@ export function CroppedImageUploader({
     handleApply,
     setCrop,
     setZoom,
-  } = useUpload({ value, onChange, aspect, bucketName })
+  } = useUpload({ value, onChange, aspect, bucketName, cropEnabled })
 
   return (
     <div className={cn("space-y-2", className)}>
@@ -61,12 +64,18 @@ export function CroppedImageUploader({
         accept={accept}
         className="sr-only"
         onChange={handleFileChange}
+        disabled={isApplying}
       />
       <label
         htmlFor={triggerId}
-        className="border-border bg-background flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed p-6 transition-colors hover:bg-muted/50"
+        className={cn(
+          "border-border bg-background flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed p-6 transition-colors hover:bg-muted/50",
+          isApplying && "pointer-events-none opacity-60",
+        )}
       >
-        {previewUrl ? (
+        {isApplying ? (
+          <span className="text-muted-foreground text-sm">Загрузка…</span>
+        ) : previewUrl ? (
           <>
             <div className="relative h-40 w-full max-w-full">
               <Image

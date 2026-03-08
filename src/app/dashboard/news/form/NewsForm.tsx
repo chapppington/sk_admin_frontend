@@ -16,7 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui/select"
-import { Textarea } from "@/shared/ui/textarea"
+import { AutoResizeTextarea } from "@/shared/ui/auto-resize-textarea"
 import type { INews } from "@/types/news.types"
 import { NEWS_CATEGORIES } from "@/types/news.types"
 
@@ -69,18 +69,32 @@ export function NewsForm({ news, onOpenChange }: NewsFormProps) {
         </Field>
         <Field>
           <FieldLabel>Краткое содержание</FieldLabel>
-          <Textarea
-            {...register("short_content", { required: true })}
-            placeholder="Краткое содержание"
-            rows={2}
+          <Controller
+            name="short_content"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <AutoResizeTextarea
+                {...field}
+                placeholder="Краткое содержание"
+                rows={2}
+              />
+            )}
           />
         </Field>
         <Field>
           <FieldLabel>Содержание</FieldLabel>
-          <Textarea
-            {...register("content", { required: true })}
-            placeholder="Полный текст"
-            rows={4}
+          <Controller
+            name="content"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <AutoResizeTextarea
+                {...field}
+                placeholder="Полный текст"
+                rows={4}
+              />
+            )}
           />
         </Field>
         <Field>

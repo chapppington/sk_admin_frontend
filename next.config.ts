@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "s3.regru.cloud",
       },
+      {
+        protocol: "https",
+        hostname: "sibkomplekt.ru",
+      },
     ],
   },
 }

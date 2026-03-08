@@ -29,17 +29,21 @@ export function getProductsColumns(
           width={PREVIEW_SIZE}
           height={PREVIEW_SIZE}
           containerClassName="relative size-16 shrink-0 overflow-hidden rounded border"
-          className="size-full object-cover"
+          className="size-full object-contain"
         />
       ),
     },
     {
       accessorKey: "name",
       header: "Название",
-    },
-    {
-      accessorKey: "category",
-      header: "Категория",
+      cell: ({ row }) => (
+        <div className="flex flex-col gap-0.5">
+          <span>{row.original.name}</span>
+          <span className="text-muted-foreground text-xs">
+            {row.original.category}
+          </span>
+        </div>
+      ),
     },
     {
       accessorKey: "is_shown",

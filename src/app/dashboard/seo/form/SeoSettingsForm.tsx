@@ -10,7 +10,7 @@ import { DialogFooter } from "@/shared/ui/dialog"
 import { Field, FieldGroup, FieldLabel } from "@/shared/ui/field"
 import { Input } from "@/shared/ui/input"
 import { Switch } from "@/shared/ui/switch"
-import { Textarea } from "@/shared/ui/textarea"
+import { AutoResizeTextarea } from "@/shared/ui/auto-resize-textarea"
 import type { ISeoSettings } from "@/types/seo-settings.types"
 
 type SeoSettingsFormProps = {
@@ -51,10 +51,17 @@ export function SeoSettingsForm({
         </Field>
         <Field>
           <FieldLabel>Description</FieldLabel>
-          <Textarea
-            {...register("description", { required: true })}
-            placeholder="Описание для поисковиков"
-            rows={2}
+          <Controller
+            name="description"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <AutoResizeTextarea
+                {...field}
+                placeholder="Описание для поисковиков"
+                rows={2}
+              />
+            )}
           />
         </Field>
         <Field>
@@ -70,10 +77,17 @@ export function SeoSettingsForm({
         </Field>
         <Field>
           <FieldLabel>OG Description</FieldLabel>
-          <Textarea
-            {...register("og_description")}
-            placeholder="Описание для соцсетей"
-            rows={2}
+          <Controller
+            name="og_description"
+            control={control}
+            render={({ field }) => (
+              <AutoResizeTextarea
+                {...field}
+                value={field.value ?? ""}
+                placeholder="Описание для соцсетей"
+                rows={2}
+              />
+            )}
           />
         </Field>
         <Field>

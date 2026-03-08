@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/shared/ui/select"
 import { Switch } from "@/shared/ui/switch"
-import { Textarea } from "@/shared/ui/textarea"
+import { AutoResizeTextarea } from "@/shared/ui/auto-resize-textarea"
 import type { ICertificateGroup } from "@/types/certificates.types"
 import { CERTIFICATE_SECTIONS } from "@/types/certificates.types"
 
@@ -70,10 +70,17 @@ export function CertificateGroupForm({
         </Field>
         <Field>
           <FieldLabel>Описание</FieldLabel>
-          <Textarea
-            {...register("content", { required: true })}
-            placeholder="Описание"
-            rows={3}
+          <Controller
+            name="content"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <AutoResizeTextarea
+                {...field}
+                placeholder="Описание"
+                rows={3}
+              />
+            )}
           />
         </Field>
         <Field>

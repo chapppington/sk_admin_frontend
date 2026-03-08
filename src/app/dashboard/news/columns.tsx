@@ -34,24 +34,16 @@ export function getNewsColumns(
       },
     },
     {
-      accessorKey: "category",
-      header: "Категория",
-    },
-    {
       accessorKey: "title",
       header: "Заголовок",
-    },
-    {
-      accessorKey: "short_content",
-      header: "Краткое содержание",
-      cell: ({ row }) => {
-        const text = row.getValue("short_content") as string
-        return (
-          <span className="max-w-[200px] truncate block" title={text}>
-            {text}
+      cell: ({ row }) => (
+        <div className="flex flex-col gap-0.5 w-[550px] whitespace-normal">
+          <span>{row.original.title}</span>
+          <span className="text-muted-foreground text-xs">
+            {row.original.category}
           </span>
-        )
-      },
+        </div>
+      ),
     },
     {
       accessorKey: "reading_time",

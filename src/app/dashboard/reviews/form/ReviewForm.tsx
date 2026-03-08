@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui/select"
-import { Textarea } from "@/shared/ui/textarea"
+import { AutoResizeTextarea } from "@/shared/ui/auto-resize-textarea"
 import type { IReview } from "@/types/reviews.types"
 import { REVIEW_CATEGORIES } from "@/types/reviews.types"
 
@@ -119,18 +119,32 @@ export function ReviewForm({ review, onOpenChange }: ReviewFormProps) {
           <>
             <Field>
               <FieldLabel>Краткий текст</FieldLabel>
-              <Textarea
-                {...register("short_text")}
-                placeholder="Краткий отзыв"
-                rows={2}
+              <Controller
+                name="short_text"
+                control={control}
+                render={({ field }) => (
+                  <AutoResizeTextarea
+                    {...field}
+                    value={field.value ?? ""}
+                    placeholder="Краткий отзыв"
+                    rows={2}
+                  />
+                )}
               />
             </Field>
             <Field>
               <FieldLabel>Полный текст</FieldLabel>
-              <Textarea
-                {...register("text")}
-                placeholder="Полный текст отзыва"
-                rows={4}
+              <Controller
+                name="text"
+                control={control}
+                render={({ field }) => (
+                  <AutoResizeTextarea
+                    {...field}
+                    value={field.value ?? ""}
+                    placeholder="Полный текст отзыва"
+                    rows={4}
+                  />
+                )}
               />
             </Field>
           </>

@@ -1,6 +1,7 @@
 "use client"
 
 import { type SubmitHandler, useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { toFormValues } from "@/app/dashboard/products/form/utils"
 import { useProducts } from "@/hooks/products/useProducts"
 import { slugify } from "@/shared/utils/slugify"
@@ -54,9 +55,26 @@ export function useProductForm({
 
   const isLoading = createMutation.isPending || updateMutation.isPending
 
+  const getFirstErrorMessage = (err: unknown): string | undefined => {
+    if (err && typeof err === "object") {
+      if ("message" in err && typeof (err as { message?: string }).message === "string") {
+        const msg = (err as { message: string }).message.trim()
+        return msg || undefined
+      }
+      const first = Object.values(err)[0]
+      return first !== undefined ? getFirstErrorMessage(first) : undefined
+    }
+    return undefined
+  }
+
+  const onInvalid = (errors: Record<string, unknown>) => {
+    const msg = getFirstErrorMessage(errors)
+    toast.error(msg || "Заполните обязательные поля")
+  }
+
   return {
     register: form.register,
-    handleSubmit: form.handleSubmit(onSubmit),
+    handleSubmit: form.handleSubmit(onSubmit, onInvalid),
     control: form.control,
     watch: form.watch,
     setValue: form.setValue,

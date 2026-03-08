@@ -11,7 +11,7 @@ import { Field, FieldGroup, FieldLabel } from "@/shared/ui/field"
 import { Input } from "@/shared/ui/input"
 import { Switch } from "@/shared/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/ui/tabs"
-import { Textarea } from "@/shared/ui/textarea"
+import { AutoResizeTextarea } from "@/shared/ui/auto-resize-textarea"
 import type { IPortfolio } from "@/types/portfolios.types"
 
 const STEPS = [
@@ -68,10 +68,17 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
             </Field>
             <Field>
               <FieldLabel>Полное описание</FieldLabel>
-              <Textarea
-                {...register("description", { required: true })}
-                placeholder="Полное описание проекта"
-                rows={4}
+              <Controller
+                name="description"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <AutoResizeTextarea
+                    {...field}
+                    placeholder="Полное описание проекта"
+                    rows={4}
+                  />
+                )}
               />
             </Field>
             <Field>
@@ -110,10 +117,17 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
             </Field>
             <Field>
               <FieldLabel>Задача (описание)</FieldLabel>
-              <Textarea
-                {...register("task_description", { required: true })}
-                placeholder="Описание задачи"
-                rows={2}
+              <Controller
+                name="task_description"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <AutoResizeTextarea
+                    {...field}
+                    placeholder="Описание задачи"
+                    rows={2}
+                  />
+                )}
               />
             </Field>
           </FieldGroup>
@@ -129,10 +143,17 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
             </Field>
             <Field>
               <FieldLabel>Решение (описание)</FieldLabel>
-              <Textarea
-                {...register("solution_description", { required: true })}
-                placeholder="Описание решения"
-                rows={2}
+              <Controller
+                name="solution_description"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <AutoResizeTextarea
+                    {...field}
+                    placeholder="Описание решения"
+                    rows={2}
+                  />
+                )}
               />
             </Field>
             <Field>
@@ -144,10 +165,17 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
             </Field>
             <Field>
               <FieldLabel>Решение (подописание)</FieldLabel>
-              <Textarea
-                {...register("solution_subdescription", { required: true })}
-                placeholder="Подописание"
-                rows={2}
+              <Controller
+                name="solution_subdescription"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <AutoResizeTextarea
+                    {...field}
+                    placeholder="Подописание"
+                    rows={2}
+                  />
+                )}
               />
             </Field>
             <Field>
@@ -184,7 +212,7 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
                     bucketName={BUCKET_NAMES.portfolios}
                     value={field.value}
                     onChange={(url) => field.onChange(url ?? "")}
-                    aspect={16 / 9}
+                    aspect={3 / 4}
                   />
                 )}
               />
@@ -227,10 +255,16 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
                 </Field>
                 <Field>
                   <FieldLabel>Текст отзыва</FieldLabel>
-                  <Textarea
-                    {...register("review_text")}
-                    placeholder="Текст отзыва"
-                    rows={2}
+                  <Controller
+                    name="review_text"
+                    control={control}
+                    render={({ field }) => (
+                      <AutoResizeTextarea
+                        {...field}
+                        placeholder="Текст отзыва"
+                        rows={2}
+                      />
+                    )}
                   />
                 </Field>
                 <Field>
