@@ -22,14 +22,16 @@ import { CERTIFICATE_SECTIONS } from "@/types/certificates.types"
 type CertificateGroupFormProps = {
   group: ICertificateGroup | null
   onOpenChange: (open: boolean) => void
+  defaultSection?: string
 }
 
 export function CertificateGroupForm({
   group,
   onOpenChange,
+  defaultSection,
 }: CertificateGroupFormProps) {
   const { register, handleSubmit, control, isEdit, isLoading } =
-    useCertificateGroupForm({ group, onOpenChange })
+    useCertificateGroupForm({ group, onOpenChange, defaultSection })
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">

@@ -13,12 +13,14 @@ type CertificateGroupDialogProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
   group: ICertificateGroup | null
+  defaultSection?: string
 }
 
 export function CertificateGroupDialog({
   open,
   onOpenChange,
   group,
+  defaultSection,
 }: CertificateGroupDialogProps) {
   const isEdit = Boolean(group?.oid)
 
@@ -31,7 +33,11 @@ export function CertificateGroupDialog({
           </DialogTitle>
         </DialogHeader>
         {open && (
-          <CertificateGroupForm group={group} onOpenChange={onOpenChange} />
+          <CertificateGroupForm
+            group={group}
+            onOpenChange={onOpenChange}
+            defaultSection={defaultSection}
+          />
         )}
       </DialogContent>
     </Dialog>

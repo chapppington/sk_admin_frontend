@@ -28,7 +28,7 @@ export function getProductsColumns(
           alt={row.original.preview_image_alt ?? ""}
           width={PREVIEW_SIZE}
           height={PREVIEW_SIZE}
-          containerClassName="relative size-16 shrink-0 overflow-hidden rounded border"
+          containerClassName="relative size-16 shrink-0 overflow-hidden rounded border bg-gray-100"
           className="size-full object-contain"
         />
       ),

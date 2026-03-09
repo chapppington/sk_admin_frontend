@@ -11,7 +11,7 @@ import { SeoSettingsDialog } from "./dialog/SeoSettingsDialog"
 
 export default function SeoPage() {
   const [offset, setOffset] = useState(0)
-  const [limit, setLimit] = useState(10)
+  const [limit, setLimit] = useState(20)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [selectedSeoSettings, setSelectedSeoSettings] =
     useState<ISeoSettings | null>(null)

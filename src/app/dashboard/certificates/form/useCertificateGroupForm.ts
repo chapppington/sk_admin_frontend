@@ -9,16 +9,18 @@ import type {
 export type UseCertificateGroupFormParams = {
   group: ICertificateGroup | null
   onOpenChange: (open: boolean) => void
+  defaultSection?: string
 }
 
 export function useCertificateGroupForm({
   group,
   onOpenChange,
+  defaultSection,
 }: UseCertificateGroupFormParams) {
   const { createMutation, updateMutation } = useCertificateGroups()
   const isEdit = Boolean(group?.oid)
   const form = useForm<ICertificateGroupCreate>({
-    defaultValues: toCertificateGroupFormValues(group),
+    defaultValues: toCertificateGroupFormValues(group, defaultSection),
   })
 
   const onSuccess = () => {

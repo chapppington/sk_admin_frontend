@@ -7,10 +7,11 @@ import type {
 
 export function toCertificateGroupFormValues(
   group: ICertificateGroup | null,
+  defaultSection?: string,
 ): ICertificateGroupCreate {
   if (!group) {
     return {
-      section: "Декларации",
+      section: defaultSection ?? "Декларации",
       title: "",
       content: "",
       order: 0,

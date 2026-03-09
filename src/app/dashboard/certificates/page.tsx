@@ -237,6 +237,7 @@ export default function CertificatesPage() {
         open={groupDialogOpen}
         onOpenChange={setGroupDialogOpen}
         group={selectedGroup}
+        defaultSection={section}
       />
 
       {selectedGroupForCertificates && (
