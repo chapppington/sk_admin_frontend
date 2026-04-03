@@ -261,6 +261,7 @@ export function PortfolioForm({ portfolio, onOpenChange }: PortfolioFormProps) {
                     render={({ field }) => (
                       <AutoResizeTextarea
                         {...field}
+                        value={field.value ?? ""}
                         placeholder="Текст отзыва"
                         rows={2}
                       />
