@@ -7,6 +7,8 @@ export interface ISubmission {
   comments: string | null
   files: string[]
   answers_file_url: string | null
+  consent: boolean
+  marketing_consent: boolean
   created_at: string
   updated_at: string
 }

@@ -17,6 +17,8 @@ export function toFormValues(product: IProduct | null): IProductCreate {
       order: 0,
       is_shown: true,
       show_advantages: true,
+      price: null,
+      show_price_from: true,
       portfolio_ids: [],
     }
   }
@@ -50,6 +52,8 @@ export function toFormValues(product: IProduct | null): IProductCreate {
     order: product.order,
     is_shown: product.is_shown,
     show_advantages: product.show_advantages,
+    price: product.price,
+    show_price_from: product.show_price_from,
     portfolio_ids: product.portfolio_ids,
   }
 }

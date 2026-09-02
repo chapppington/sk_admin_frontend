@@ -1,6 +1,14 @@
 import Cookies from "js-cookie"
 import { AuthToken } from "@/types/auth.types"
 
+const isProduction = process.env.NODE_ENV === "production"
+
+const cookieOptions = {
+  sameSite: "lax" as const,
+  path: "/",
+  secure: isProduction,
+}
+
 class AuthTokenService {
   getAccessToken() {
     const accessToken = Cookies.get(AuthToken.ACCESS_TOKEN)
@@ -14,28 +22,24 @@ class AuthTokenService {
 
   saveAccessToken(accessToken: string) {
     Cookies.set(AuthToken.ACCESS_TOKEN, accessToken, {
-      sameSite: "lax",
+      ...cookieOptions,
       expires: 1,
-      path: "/",
     })
   }
 
   saveRefreshToken(refreshToken: string) {
     Cookies.set(AuthToken.REFRESH_TOKEN, refreshToken, {
-      sameSite: "lax",
+      ...cookieOptions,
       expires: 7,
-      path: "/",
     })
   }
 
   removeAccessToken() {
-    Cookies.remove(AuthToken.ACCESS_TOKEN, { path: "/" })
-    Cookies.remove(AuthToken.ACCESS_TOKEN)
+    Cookies.remove(AuthToken.ACCESS_TOKEN, cookieOptions)
   }
 
   removeRefreshToken() {
-    Cookies.remove(AuthToken.REFRESH_TOKEN, { path: "/" })
-    Cookies.remove(AuthToken.REFRESH_TOKEN)
+    Cookies.remove(AuthToken.REFRESH_TOKEN, cookieOptions)
   }
 }
 

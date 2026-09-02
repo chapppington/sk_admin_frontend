@@ -127,6 +127,29 @@ export function ProductForm({ product, onOpenChange }: ProductFormProps) {
               />
             </Field>
             <Field>
+              <FieldLabel>Цена</FieldLabel>
+              <Input
+                {...register("price")}
+                placeholder="Например: 1500000"
+              />
+            </Field>
+            <Field orientation="horizontal" className="items-center gap-2">
+              <Controller
+                name="show_price_from"
+                control={control}
+                render={({ field }) => (
+                  <Switch
+                    ref={field.ref}
+                    checked={field.value}
+                    onCheckedChange={(checked) => field.onChange(!!checked)}
+                    onBlur={field.onBlur}
+                    className="shrink-0"
+                  />
+                )}
+              />
+              <FieldLabel>Показывать приписку «от»</FieldLabel>
+            </Field>
+            <Field>
               <FieldLabel>Превью (изображение)</FieldLabel>
               <Controller
                 name="preview_image_url"

@@ -57,6 +57,8 @@ export interface IProduct {
   order: number
   is_shown: boolean
   show_advantages: boolean
+  price: string | null
+  show_price_from: boolean
   portfolio_ids: string[]
   created_at: string
   updated_at: string

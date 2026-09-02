@@ -43,6 +43,16 @@ export function getSubmissionsColumns(
       },
     },
     {
+      accessorKey: "consent",
+      header: "Согласие на ПД",
+      cell: ({ row }) => (row.original.consent ? "Да" : "Нет"),
+    },
+    {
+      accessorKey: "marketing_consent",
+      header: "Рекламная рассылка",
+      cell: ({ row }) => (row.original.marketing_consent ? "Да" : "Нет"),
+    },
+    {
       accessorKey: "created_at",
       header: "Дата и время",
       cell: ({ row }) => formatDateTime(row.original.created_at),

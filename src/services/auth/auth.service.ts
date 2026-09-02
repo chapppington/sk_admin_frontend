@@ -30,8 +30,19 @@ class AuthService {
   }
 
   async refreshToken() {
+    const refreshToken = authTokenService.getRefreshToken()
+    if (!refreshToken) {
+      throw new Error("Missing refresh token")
+    }
+
     const response = await axiosDefault.post<ApiResponse<RefreshTokenResponse>>(
       "/auth/token/refresh",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
+      },
     )
 
     const tokenData = response.data.data

@@ -45,6 +45,7 @@ export function useProductForm({
       })),
       documentation: data.documentation?.length ? data.documentation : null,
       portfolio_ids: data.portfolio_ids.filter(Boolean),
+      price: data.price?.trim() || null,
     }
     if (isEdit && product) {
       updateMutation.mutate({ oid: product.oid, data: payload }, { onSuccess })

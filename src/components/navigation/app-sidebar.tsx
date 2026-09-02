@@ -4,6 +4,7 @@ import {
   IconBriefcase,
   IconCertificate,
   IconClipboardList,
+  IconFileDescription,
   IconMessageCircle2,
   IconNews,
   IconPackage,
@@ -72,6 +73,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { user, isLoading } = useAuth()
   const { isMobile, setOpenMobile } = useSidebar()
   const seoUrl = `${DASHBOARD_HOME}/seo`
+  const questionnairesUrl = `${DASHBOARD_HOME}/questionnaires`
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -92,6 +94,28 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <div className="w-full min-w-0 shrink-0 px-2">
           <SidebarSeparator className="mx-0 w-full" />
         </div>
+        <SidebarGroup>
+          <SidebarGroupLabel>Контент страниц</SidebarGroupLabel>
+          <SidebarGroupContent className="flex flex-col gap-2">
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  tooltip="Опросные листы"
+                  isActive={pathname === questionnairesUrl}
+                >
+                  <Link
+                    href={questionnairesUrl}
+                    onClick={() => isMobile && setOpenMobile(false)}
+                  >
+                    <IconFileDescription />
+                    <span>Опросные листы</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel>SEO настройки</SidebarGroupLabel>
           <SidebarGroupContent className="flex flex-col gap-2">

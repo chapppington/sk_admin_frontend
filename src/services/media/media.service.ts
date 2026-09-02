@@ -17,9 +17,6 @@ class MediaService {
     const response = await axiosAuth.post<ApiResponse<UploadFileResult[]>>(
       `${this._BASE_URL}/upload`,
       formData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      },
     )
     return response.data.data
   }

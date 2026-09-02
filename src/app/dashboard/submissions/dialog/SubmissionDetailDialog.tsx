@@ -51,6 +51,14 @@ export function SubmissionDetailDialog({
           <DetailRow label="Телефон" value={submission.phone} />
           <DetailRow label="Комментарий" value={submission.comments} />
           <DetailRow
+            label="Согласие на обработку персональных данных"
+            value={submission.consent ? "Да" : "Нет"}
+          />
+          <DetailRow
+            label="Согласие на рекламную рассылку"
+            value={submission.marketing_consent ? "Да" : "Нет"}
+          />
+          <DetailRow
             label="Файлы"
             value={
               submission.files.length > 0 ? (
