@@ -5,6 +5,7 @@ import {
   IconCertificate,
   IconClipboardList,
   IconFileDescription,
+  IconFileText,
   IconMessageCircle2,
   IconNews,
   IconPackage,
@@ -73,6 +74,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { user, isLoading } = useAuth()
   const { isMobile, setOpenMobile } = useSidebar()
   const seoUrl = `${DASHBOARD_HOME}/seo`
+  const catalogTextsUrl = `${DASHBOARD_HOME}/catalog-texts`
   const questionnairesUrl = `${DASHBOARD_HOME}/questionnaires`
 
   return (
@@ -132,6 +134,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   >
                     <IconSettings />
                     <span>Наборы мета тегов</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  tooltip="SEO-тексты каталога"
+                  isActive={pathname === catalogTextsUrl}
+                >
+                  <Link
+                    href={catalogTextsUrl}
+                    onClick={() => isMobile && setOpenMobile(false)}
+                  >
+                    <IconFileText />
+                    <span>SEO-тексты каталога</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
