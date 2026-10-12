@@ -10,12 +10,14 @@ import { Button } from "@/shared/ui/button"
 import type { IProduct } from "@/types/products.types"
 import { getProductsColumns } from "./columns"
 import { ProductDialog } from "./dialog/ProductDialog"
+import { WarehouseFileDialog } from "./dialog/WarehouseFileDialog"
 
 export default function ProductsPage() {
   const queryClient = useQueryClient()
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [warehouseDialogOpen, setWarehouseDialogOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null)
 
   const {
@@ -75,8 +77,11 @@ export default function ProductsPage() {
 
   return (
     <div className="flex flex-col gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-6">
-      <div className="flex justify-start">
+      <div className="flex flex-wrap gap-3 justify-start">
         <Button onClick={handleCreate}>Добавить продукт</Button>
+        <Button variant="outline" onClick={() => setWarehouseDialogOpen(true)}>
+          Редактировать остатки со склада
+        </Button>
       </div>
       <DataTable
         columns={getProductsColumns(handleEdit, handleDelete)}
@@ -99,6 +104,10 @@ export default function ProductsPage() {
         open={dialogOpen}
         onOpenChange={setDialogOpen}
         product={selectedProduct}
+      />
+      <WarehouseFileDialog
+        open={warehouseDialogOpen}
+        onOpenChange={setWarehouseDialogOpen}
       />
     </div>
   )

@@ -8,6 +8,7 @@ class MediaService {
   async uploadFiles(
     files: File[],
     bucketName: string,
+    onUploadProgress?: (progress: number) => void,
   ): Promise<UploadFileResult[]> {
     const formData = new FormData()
     for (const file of files) {
@@ -17,6 +18,16 @@ class MediaService {
     const response = await axiosAuth.post<ApiResponse<UploadFileResult[]>>(
       `${this._BASE_URL}/upload`,
       formData,
+      {
+        onUploadProgress: (event) => {
+          if (!onUploadProgress) return
+          if (event.total) {
+            onUploadProgress(Math.round((event.loaded * 100) / event.total))
+            return
+          }
+          onUploadProgress(0)
+        },
+      },
     )
     return response.data.data
   }

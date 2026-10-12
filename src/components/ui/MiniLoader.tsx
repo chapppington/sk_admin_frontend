@@ -1,26 +1,17 @@
-import Image from "next/image"
+import { Loader2 } from "lucide-react"
+import { cn } from "@/shared/utils"
 
 interface Props {
-  isDark?: boolean
-  width?: number
-  height?: number
+  className?: string
+  size?: number
 }
 
-export function MiniLoader({
-  isDark = false,
-  height = 30,
-  width = 30,
-  ...rest
-}: Props) {
+export function MiniLoader({ className, size = 30 }: Props) {
   return (
-    <Image
-      src={isDark ? "/dark-loader.svg" : "/loader.svg"}
-      width={width}
-      height={height}
-      priority
-      alt=""
-      className="mx-auto"
-      {...rest}
+    <Loader2
+      className={cn("text-primary mx-auto animate-spin", className)}
+      size={size}
+      aria-hidden
     />
   )
 }
