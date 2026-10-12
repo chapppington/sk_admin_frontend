@@ -2,6 +2,14 @@
 
 import { EditorContent, useEditor, useEditorState } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
+import {
+  Bold,
+  Heading2,
+  Heading3,
+  Italic,
+  List,
+  ListOrdered,
+} from "lucide-react"
 import { Button } from "@/shared/ui/button"
 import type { CatalogTextDocument } from "@/types/catalog-text.types"
 
@@ -80,6 +88,7 @@ export function RichTextEditor({
           onClick={() => editor?.chain().focus().toggleBold().run()}
           disabled={!editor}
         >
+          <Bold />
           Жирный
         </Button>
         <Button
@@ -89,6 +98,7 @@ export function RichTextEditor({
           onClick={() => editor?.chain().focus().toggleItalic().run()}
           disabled={!editor}
         >
+          <Italic />
           Курсив
         </Button>
         <Button
@@ -100,6 +110,7 @@ export function RichTextEditor({
           }
           disabled={!editor}
         >
+          <Heading2 />
           H2
         </Button>
         <Button
@@ -111,6 +122,7 @@ export function RichTextEditor({
           }
           disabled={!editor}
         >
+          <Heading3 />
           H3
         </Button>
         <Button
@@ -120,7 +132,8 @@ export function RichTextEditor({
           onClick={() => editor?.chain().focus().toggleBulletList().run()}
           disabled={!editor}
         >
-          Список
+          <List />
+          Буллетированный список
         </Button>
         <Button
           type="button"
@@ -129,7 +142,8 @@ export function RichTextEditor({
           onClick={() => editor?.chain().focus().toggleOrderedList().run()}
           disabled={!editor}
         >
-          Нумерация
+          <ListOrdered />
+          Нумерованный список
         </Button>
       </div>
 
