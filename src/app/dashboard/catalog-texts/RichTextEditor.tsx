@@ -1,6 +1,6 @@
 "use client"
 
-import { EditorContent, useEditor } from "@tiptap/react"
+import { EditorContent, useEditor, useEditorState } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import { Button } from "@/shared/ui/button"
 import type { CatalogTextDocument } from "@/types/catalog-text.types"
@@ -45,13 +45,38 @@ export function RichTextEditor({
     },
   })
 
+  const activeStyles = useEditorState({
+    editor,
+    selector: ({ editor: currentEditor }) => {
+      if (!currentEditor || currentEditor.state.selection.empty) {
+        return {
+          bold: false,
+          italic: false,
+          heading2: false,
+          heading3: false,
+          bulletList: false,
+          orderedList: false,
+        }
+      }
+
+      return {
+        bold: currentEditor.isActive("bold"),
+        italic: currentEditor.isActive("italic"),
+        heading2: currentEditor.isActive("heading", { level: 2 }),
+        heading3: currentEditor.isActive("heading", { level: 3 }),
+        bulletList: currentEditor.isActive("bulletList"),
+        orderedList: currentEditor.isActive("orderedList"),
+      }
+    },
+  })
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap gap-2">
         <Button
           type="button"
           size="sm"
-          variant={editor?.isActive("bold") ? "default" : "outline"}
+          variant={activeStyles?.bold ? "default" : "outline"}
           onClick={() => editor?.chain().focus().toggleBold().run()}
           disabled={!editor}
         >
@@ -60,7 +85,7 @@ export function RichTextEditor({
         <Button
           type="button"
           size="sm"
-          variant={editor?.isActive("italic") ? "default" : "outline"}
+          variant={activeStyles?.italic ? "default" : "outline"}
           onClick={() => editor?.chain().focus().toggleItalic().run()}
           disabled={!editor}
         >
@@ -69,9 +94,7 @@ export function RichTextEditor({
         <Button
           type="button"
           size="sm"
-          variant={
-            editor?.isActive("heading", { level: 2 }) ? "default" : "outline"
-          }
+          variant={activeStyles?.heading2 ? "default" : "outline"}
           onClick={() =>
             editor?.chain().focus().toggleHeading({ level: 2 }).run()
           }
@@ -82,9 +105,7 @@ export function RichTextEditor({
         <Button
           type="button"
           size="sm"
-          variant={
-            editor?.isActive("heading", { level: 3 }) ? "default" : "outline"
-          }
+          variant={activeStyles?.heading3 ? "default" : "outline"}
           onClick={() =>
             editor?.chain().focus().toggleHeading({ level: 3 }).run()
           }
@@ -95,7 +116,7 @@ export function RichTextEditor({
         <Button
           type="button"
           size="sm"
-          variant={editor?.isActive("bulletList") ? "default" : "outline"}
+          variant={activeStyles?.bulletList ? "default" : "outline"}
           onClick={() => editor?.chain().focus().toggleBulletList().run()}
           disabled={!editor}
         >
@@ -104,7 +125,7 @@ export function RichTextEditor({
         <Button
           type="button"
           size="sm"
-          variant={editor?.isActive("orderedList") ? "default" : "outline"}
+          variant={activeStyles?.orderedList ? "default" : "outline"}
           onClick={() => editor?.chain().focus().toggleOrderedList().run()}
           disabled={!editor}
         >
